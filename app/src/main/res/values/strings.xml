@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MyPagingThree</string>
+
+    <!--region : Network error-->
+
+    <string name="error_generic">Something went wrong.Try again later.</string>
+    <string name="error_no_internet">No internet connection.</string>
+    <string name="error_socket_timeout">Connection timeout.</string>
+    <string name="error_server_500">Server error occurs.Try again later.</string>
+    <string name="error_server_404">Server not found.</string>
+    <string name="error_http">Server error occurs.Try again later.</string>
+
+    <string name="further_sign_up" translatable="false">Please enter your mobile number to proceed further <font color="#ffc809"><b></b></font></string>
+    <string name="login_mobile_number" translatable="false">Mobile Number(09xxxxxxxxx) <font color="#C62828">*</font></string>
+
+    <!--endregion -->
+
+</resources>
