@@ -11,12 +11,10 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pthw.mypagingthree.databinding.ActivityMainBinding
-import com.pthw.mypagingthree.paging.ArticlePagingAdapter
+import com.pthw.mypagingthree.paging.adapter.ArticlePagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

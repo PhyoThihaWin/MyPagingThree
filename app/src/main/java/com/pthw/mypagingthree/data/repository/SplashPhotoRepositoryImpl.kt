@@ -1,7 +1,7 @@
 package com.pthw.mypagingthree.data.repository
 
 import com.pthw.mypagingthree.data.api.SplashPhotoService
-import com.pthw.mypagingthree.paging.SplashPhotoPagingSource
+import com.pthw.mypagingthree.paging.source.SplashPhotoPagingSource
 import javax.inject.Inject
 
 class SplashPhotoRepositoryImpl @Inject constructor(

@@ -6,6 +6,7 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
 import com.pthw.mypagingthree.BuildConfig
 import com.pthw.mypagingthree.utils.interceptor.AuthTokenInterceptor
+import com.pthw.mypagingthree.utils.interceptor.NetworkExceptionInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -31,11 +32,7 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val loggerInterceptor = HttpLoggingInterceptor()
-        if (BuildConfig.DEBUG) {
-            loggerInterceptor.level = HttpLoggingInterceptor.Level.BASIC
-        } else {
-            loggerInterceptor.level = HttpLoggingInterceptor.Level.NONE
-        }
+        loggerInterceptor.level = HttpLoggingInterceptor.Level.BASIC
         return loggerInterceptor
     }
 
@@ -61,16 +58,22 @@ object NetworkModule {
         chuckerCollector: ChuckerInterceptor,
         authTokenInterceptor: AuthTokenInterceptor,
         //languageInterceptor: LanguageInterceptor,
-        loggerInterceptor: HttpLoggingInterceptor
+        loggerInterceptor: HttpLoggingInterceptor,
+        networkExceptionInterceptor: NetworkExceptionInterceptor
     ): OkHttpClient {
         val builder = OkHttpClient.Builder()
         builder.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(authTokenInterceptor)
+            .addInterceptor(networkExceptionInterceptor)
 //            .addInterceptor(languageInterceptor)
-            .addInterceptor(loggerInterceptor)
-            .addInterceptor(chuckerCollector)
+
+        if (BuildConfig.DEBUG) {
+            builder.addInterceptor(loggerInterceptor)
+            builder.addInterceptor(chuckerCollector)
+        }
+
         return builder.build()
     }
 
@@ -86,8 +89,4 @@ object NetworkModule {
             .build()
     }
 
-//    @Provides
-//    fun provideAuthStoreProvider(retrofit: Retrofit): AuthStoreProvider {
-//        return retrofit.create(LoyaltyService::class.java)
-//    }
 }

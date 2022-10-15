@@ -7,6 +7,8 @@ import retrofit2.Response
 
 /**
  * Created by Vincent on 2019-10-21
+ *
+ * Modified by PTH
  */
 private const val KEY_CONTENT = 204
 private const val ERROR_401 = 401
@@ -34,4 +36,7 @@ fun <T> Response<T>.getBodyOrThrowNetworkException(): T {
 
     return body
 }
+
+fun <T> Response<T>.getBody(): T = body() ?: throw NetworkException()
+
 

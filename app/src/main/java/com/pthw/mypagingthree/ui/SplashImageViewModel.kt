@@ -13,7 +13,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-private const val ITEMS_PER_PAGE = 20
+private const val ITEMS_PER_PAGE = 10
 
 @HiltViewModel
 class SplashImageViewModel @Inject constructor(

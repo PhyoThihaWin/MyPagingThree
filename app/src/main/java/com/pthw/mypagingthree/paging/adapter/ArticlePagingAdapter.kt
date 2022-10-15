@@ -1,4 +1,4 @@
-package com.pthw.mypagingthree.paging
+package com.pthw.mypagingthree.paging.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

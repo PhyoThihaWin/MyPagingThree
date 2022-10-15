@@ -1,7 +1,6 @@
 package com.pthw.mypagingthree.di
 
-import com.pthw.mypagingthree.paging.ArticlePagingSource
-import com.pthw.mypagingthree.paging.SplashPhotoPagingSource
+import com.pthw.mypagingthree.paging.source.ArticlePagingSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
