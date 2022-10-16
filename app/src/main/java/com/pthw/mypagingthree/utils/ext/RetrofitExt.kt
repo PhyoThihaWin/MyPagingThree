@@ -4,6 +4,7 @@ import com.pthw.mypagingthree.utils.exception.NetworkException
 import com.pthw.mypagingthree.utils.exception.NoContentException
 import retrofit2.Call
 import retrofit2.Response
+import timber.log.Timber
 
 /**
  * Created by Vincent on 2019-10-21

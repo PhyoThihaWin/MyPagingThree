@@ -26,3 +26,17 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     }
 
 }
+
+abstract class BaseActivityWithState<VB : ViewBinding, VM : BaseViewModel<E>, E> :
+    BaseActivity<VB>() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        getOrCreateViewModel().eventLD.observe(this, ::renderEvent)
+    }
+
+    abstract fun getOrCreateViewModel(): VM
+
+    abstract fun renderEvent(event: E)
+}

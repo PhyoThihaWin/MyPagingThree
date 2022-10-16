@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.pthw.mypagingthree.data.api.SplashPhotoService
 import com.pthw.mypagingthree.data.model.response.SplashPhoto
+import com.pthw.mypagingthree.utils.exception.ExceptionToStringMapper
 import com.pthw.mypagingthree.utils.exception.NoContentException
 import com.pthw.mypagingthree.utils.ext.getBody
 import com.pthw.mypagingthree.utils.ext.getBodyOrThrowNetworkException
@@ -14,7 +15,8 @@ private const val STARTING_PAGE_INDEX = 1
 private const val LOAD_DELAY_MILLIS = 6_000L
 
 class SplashPhotoPagingSource(
-    private val service: SplashPhotoService, private val query: String
+    private val query: String,
+    private val service: SplashPhotoService,
 ) : PagingSource<Int, SplashPhoto>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, SplashPhoto> {
@@ -35,7 +37,6 @@ class SplashPhotoPagingSource(
                 nextKey = if (results.isEmpty()) null else startKey + 1
             )
         }.getOrElse {
-            Timber.e(it.message.orEmpty())
             LoadResult.Error(it)
         }
 

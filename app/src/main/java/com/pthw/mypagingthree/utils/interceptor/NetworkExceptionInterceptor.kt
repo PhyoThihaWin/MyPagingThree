@@ -4,6 +4,7 @@ import com.pthw.mypagingthree.utils.exception.NetworkException
 import com.pthw.mypagingthree.utils.exception.NoContentException
 import okhttp3.Interceptor
 import okhttp3.Response
+import timber.log.Timber
 import javax.inject.Inject
 
 

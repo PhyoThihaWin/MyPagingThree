@@ -68,7 +68,7 @@ class ExceptionToStringMapperImpl @Inject constructor(
         Timber.e("error body in string : $errorBody")
         try {
             val errorBodyJson = JSONObject(errorBody)
-            return errorBodyJson.getString("error")
+            return errorBodyJson.getString("errors")
         } catch (exception: Exception) {
             Timber.e(exception)
         }

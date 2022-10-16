@@ -9,7 +9,7 @@ import javax.inject.Inject
 class AuthTokenInterceptor @Inject constructor(private val authStore: AuthStoreProvider) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 //        val token = authStore.getAuthToken() ?: return chain.proceed(chain.request())
-        val token = BuildConfig.CLIENT_ID + "fuck"
+        val token = BuildConfig.CLIENT_ID
         val requestBuilder = chain.request().newBuilder()
         requestBuilder.addHeader("Authorization", "Client-ID ${token}")
         val newRequest = requestBuilder.build()

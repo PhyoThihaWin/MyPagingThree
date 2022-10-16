@@ -1,16 +1,16 @@
 package com.pthw.mypagingthree.ui
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.pthw.mypagingthree.base.BaseViewModel
 import com.pthw.mypagingthree.data.model.response.SplashPhoto
 import com.pthw.mypagingthree.data.repository.SplashPhotoRepository
 import com.pthw.mypagingthree.utils.exception.ExceptionToStringMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 private const val ITEMS_PER_PAGE = 10
@@ -21,15 +21,41 @@ class SplashImageViewModel @Inject constructor(
     private val exception: ExceptionToStringMapper,
 ) : ViewModel() {
 
-    fun searchPhotos(query: String): Flow<PagingData<SplashPhoto>> {
-        return Pager(
+    val queryString: MutableLiveData<String> = MutableLiveData()
+
+    var pagingFlow = queryString.asFlow().flatMapLatest {
+        Pager(
             config = PagingConfig(
                 pageSize = ITEMS_PER_PAGE,
                 initialLoadSize = ITEMS_PER_PAGE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { repository.getSearchResults(query) }
+            pagingSourceFactory = { repository.getSearchResults(it) }
         ).flow.cachedIn(viewModelScope)
     }
+
+    fun searchPhotos(query: String) {
+        queryString.postValue(query)
+    }
+
+    fun mapException(t: Throwable) = exception.map(t)
+
+//    private var _userSearchText = MutableStateFlow("")
+//    private val userSearchText = _userSearchText.asStateFlow()
+//
+//    val pagingFlow = userSearchText.flatMapLatest {
+//        Pager(
+//            config = PagingConfig(
+//                pageSize = ITEMS_PER_PAGE,
+//                initialLoadSize = ITEMS_PER_PAGE,
+//                enablePlaceholders = false
+//            ),
+//            pagingSourceFactory = { repository.getSearchResults(it) }
+//        ).flow.cachedIn(viewModelScope)
+//    }
+//
+//    fun searchPhotos(query: String) {
+//        _userSearchText.value = query
+//    }
 
 }

@@ -23,6 +23,7 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class SplashImageActivity : BaseActivity<ActivitySplashImageBinding>() {
+
     override val binding: ActivitySplashImageBinding by lazy {
         ActivitySplashImageBinding.inflate(layoutInflater)
     }
@@ -42,16 +43,21 @@ class SplashImageActivity : BaseActivity<ActivitySplashImageBinding>() {
                 header = SplashPhotoLoadStateAdapter { adapter.retry() },
                 footer = SplashPhotoLoadStateAdapter { adapter.retry() },
             )
+
+            buttonRetry.setOnClickListener {
+                adapter.retry()
+            }
         }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
-                Timber.e("Reached started again!!")
-                viewModel.searchPhotos("cats").collectLatest {
+                viewModel.pagingFlow.collectLatest {
+                    Timber.w("Reached collect state!!")
                     adapter.submitData(it)
                 }
             }
         }
+        viewModel.searchPhotos("cats")
 
 //        lifecycleScope.launch {
 //            repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -81,6 +87,14 @@ class SplashImageActivity : BaseActivity<ActivitySplashImageBinding>() {
                     textViewEmpty.isVisible = false
                 }
 
+                if (loadState.source.refresh is LoadState.Error) {
+                    val errorState = loadState.source.refresh as LoadState.Error
+                    val errorMessage = viewModel.mapException(errorState.error)
+                    showShortToast(errorMessage)
+                    Timber.e(errorState.error)
+                }
+                
+
             }
         }
 
@@ -100,14 +114,7 @@ class SplashImageActivity : BaseActivity<ActivitySplashImageBinding>() {
 
                     if (query != null) {
                         binding.recyclerView.scrollToPosition(0)
-                        lifecycleScope.launch {
-                            repeatOnLifecycle(Lifecycle.State.CREATED) {
-                                Timber.e("Reached started again!!")
-                                viewModel.searchPhotos(query).collectLatest { paging ->
-                                    adapter.submitData(paging)
-                                }
-                            }
-                        }
+                        viewModel.searchPhotos(query)
                         searchView.clearFocus()
                     }
                     return true
