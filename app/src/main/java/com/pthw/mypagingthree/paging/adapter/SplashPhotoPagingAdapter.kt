@@ -3,25 +3,21 @@ package com.pthw.mypagingthree.paging.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.pthw.mypagingthree.R
+import com.pthw.mypagingthree.base.recyclerview.BaseDiffUtil
+import com.pthw.mypagingthree.base.recyclerview.BaseViewHolder
 import com.pthw.mypagingthree.data.model.response.SplashPhoto
 import com.pthw.mypagingthree.databinding.ListItemSplashPhotoBinding
 
 class SplashPhotoPagingAdapter(private val onClick: (SplashPhoto) -> Unit) :
-    PagingDataAdapter<SplashPhoto, SplashPhotoPagingAdapter.PhotoViewHolder>(PHOTO_DIFF) {
-    companion object {
-        private val PHOTO_DIFF = object : DiffUtil.ItemCallback<SplashPhoto>() {
-            override fun areItemsTheSame(oldItem: SplashPhoto, newItem: SplashPhoto): Boolean =
-                oldItem.id == newItem.id
-
-            override fun areContentsTheSame(oldItem: SplashPhoto, newItem: SplashPhoto): Boolean =
-                oldItem == newItem
-        }
-    }
+    PagingDataAdapter<SplashPhoto, PhotoViewHolder>(
+        BaseDiffUtil(
+            areItemTheSame = { old, new -> old.id == new.id },
+            areContentsTheSame = { old, new -> old == new }
+        )
+    ) {
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val item = getItem(position)
@@ -33,28 +29,31 @@ class SplashPhotoPagingAdapter(private val onClick: (SplashPhoto) -> Unit) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         val binding =
             ListItemSplashPhotoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PhotoViewHolder(binding)
+        return PhotoViewHolder(binding, onClick)
     }
+}
 
-    inner class PhotoViewHolder(
-        private val binding: ListItemSplashPhotoBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(photo: SplashPhoto) {
-            binding.apply {
-                Glide.with(itemView)
-                    .load(photo.urls.regular)
-                    .centerCrop()
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .error(R.drawable.ic_error)
-                    .into(imageView)
+class PhotoViewHolder(
+    private val binding: ListItemSplashPhotoBinding,
+    private val onClick: (SplashPhoto) -> Unit
+) :
+    BaseViewHolder<SplashPhoto>(binding.root) {
+    override fun bind(item: SplashPhoto) {
+        binding.apply {
+            Glide.with(itemView)
+                .load(item.urls.regular)
+                .centerCrop()
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .error(R.drawable.ic_error)
+                .into(imageView)
 
-                textViewUserName.text = photo.user.username
+            textViewUserName.text = item.user.username
 
-                root.setOnClickListener {
-                    onClick.invoke(photo)
-                }
+            root.setOnClickListener {
+                onClick.invoke(item)
             }
         }
     }
+
 }
 
