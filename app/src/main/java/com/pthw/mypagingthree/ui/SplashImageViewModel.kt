@@ -13,7 +13,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
-private const val ITEMS_PER_PAGE = 10
 
 @HiltViewModel
 class SplashImageViewModel @Inject constructor(
@@ -24,15 +23,8 @@ class SplashImageViewModel @Inject constructor(
     val queryString: MutableLiveData<String> = MutableLiveData()
 
     var pagingFlow = queryString.asFlow().flatMapLatest {
-        Pager(
-            config = PagingConfig(
-                pageSize = ITEMS_PER_PAGE,
-                initialLoadSize = ITEMS_PER_PAGE,
-                enablePlaceholders = false
-            ),
-            pagingSourceFactory = { repository.getSearchResults(it) }
-        ).flow.cachedIn(viewModelScope)
-    }
+        repository.getSearchResults(it)
+    }.cachedIn(viewModelScope)
 
     fun searchPhotos(query: String) {
         queryString.postValue(query)

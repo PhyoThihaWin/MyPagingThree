@@ -3,6 +3,7 @@ package com.pthw.mypagingthree.data.model.response
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class DataResponse<T>(
 
     @Json(name = "data")
@@ -14,7 +15,7 @@ data class DataResponse<T>(
     @Json(name = "success")
     val success: Boolean?
 )
-
+@JsonClass(generateAdapter = true)
 data class DataEmptyResponse(
 
     @Json(name = "message")
