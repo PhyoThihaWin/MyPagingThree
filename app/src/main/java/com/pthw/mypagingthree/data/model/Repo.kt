@@ -3,6 +3,7 @@ package com.pthw.mypagingthree.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 
 /**
@@ -12,6 +13,7 @@ import com.squareup.moshi.Json
  * This class also defines the Room repos table, where the repo [id] is the primary key.
  */
 @Entity(tableName = "repos")
+@JsonClass(generateAdapter = true)
 data class Repo(
     @PrimaryKey @field:Json(name = "id") val id: Long,
     @field:Json(name = "name") val name: String,

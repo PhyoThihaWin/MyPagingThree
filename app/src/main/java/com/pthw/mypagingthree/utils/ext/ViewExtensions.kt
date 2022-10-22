@@ -2,7 +2,9 @@ package com.pthw.mypagingthree.utils.ext
 
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 
 /**
@@ -49,5 +51,9 @@ fun TextView.hideAsTextPassword() {
 
 fun TextView.showAsTextPassword() {
     transformationMethod = HideReturnsTransformationMethod.getInstance()
+}
+
+fun ViewGroup.inflater(): LayoutInflater {
+    return this.context.inflater()
 }
 

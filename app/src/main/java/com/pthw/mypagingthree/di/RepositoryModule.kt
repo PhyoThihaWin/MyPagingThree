@@ -1,9 +1,6 @@
 package com.pthw.mypagingthree.di
 
-import com.pthw.mypagingthree.data.repository.ArticleRepository
-import com.pthw.mypagingthree.data.repository.ArticleRepositoryImpl
-import com.pthw.mypagingthree.data.repository.SplashPhotoRepository
-import com.pthw.mypagingthree.data.repository.SplashPhotoRepositoryImpl
+import com.pthw.mypagingthree.data.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,4 +15,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindImageRepository(splashPhotoRepositoryImpl: SplashPhotoRepositoryImpl): SplashPhotoRepository
+
+    @Binds
+    abstract fun bindGithubRepository(githubRepositoryImpl: GithubRepositoryImpl): GithubRepository
 }
