@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
+import androidx.paging.LoadStates
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pthw.appbase.core.BaseActivity
@@ -15,6 +16,7 @@ import com.pthw.mypagingthree.feature.article.adapter.ArticlePagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class ArticleActivity : BaseActivity<ActivityArticleBinding>() {
@@ -46,6 +48,9 @@ class ArticleActivity : BaseActivity<ActivityArticleBinding>() {
                 articleAdapter.loadStateFlow.collect {
                     binding.prependProgress.isVisible = it.source.prepend is LoadState.Loading
                     binding.appendProgress.isVisible = it.source.append is LoadState.Loading
+
+                    Timber.i(articleAdapter.itemCount.toString() + "ggg")
+
                 }
             }
         }
