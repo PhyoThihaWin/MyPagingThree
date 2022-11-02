@@ -14,15 +14,36 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
-        buildConfigField 'String', 'BASE_URL', "\"${baseUrl}\""
-        buildConfigField 'String', 'CLIENT_ID', "\"${clientId}\""
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'String', 'BASE_URL', "\"${prodBaseUrl}\""
+            buildConfigField 'String', 'CLIENT_ID', "\"${credentialClientId}\""
+        }
+        debug {
+            jniDebuggable = true
+            minifyEnabled false
+
+            buildConfigField 'String', 'BASE_URL', "\"${devBaseUrl}\""
+            buildConfigField 'String', 'CLIENT_ID', "\"${credentialClientId}\""
+        }
+        qa {
+            jniDebuggable = true
+            minifyEnabled false
+
+            buildConfigField 'String', 'BASE_URL', "\"${qaBaseUrl}\""
+            buildConfigField 'String', 'CLIENT_ID', "\"${credentialClientId}\""
+        }
+        uat {
+            jniDebuggable = true
+            minifyEnabled false
+
+            buildConfigField 'String', 'BASE_URL', "\"${uatBaseUrl}\""
+            buildConfigField 'String', 'CLIENT_ID', "\"${credentialClientId}\""
         }
     }
     compileOptions {
@@ -57,6 +78,8 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:2.43.2"
 
     debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    qaImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    uatImplementation "com.github.chuckerteam.chucker:library:3.5.2"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
 
     implementation "androidx.paging:paging-common-ktx:3.1.1"
@@ -64,5 +87,6 @@ dependencies {
 
     implementation "com.jakewharton.timber:timber:5.0.1"
 
+    // Module
     api project(path: ':data')
 }

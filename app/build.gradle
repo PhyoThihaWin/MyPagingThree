@@ -14,16 +14,68 @@ android {
         applicationId "com.pthw.mypagingthree"
         minSdk 21
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
-
+        versionCode appVersionCode
+        versionName appVersionName
+        setProperty("archivesBaseName", "MyPagingThree-$versionName")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(credentialStoreFile)
+            storePassword credentialStorePassword
+            keyAlias credentialKeyAlias
+            keyPassword credentialKeyPassword
+            v2SigningEnabled true
+        }
+
+        debug {
+            storeFile file(credentialStoreFile)
+            storePassword credentialStorePassword
+            keyAlias credentialKeyAlias
+            keyPassword credentialKeyPassword
+        }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+
+            resValue("string", "app_name", "MyPagingThree App")
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+            resValue("string", "app_name", "MyPagingThree Debug")
+        }
+        qa {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+
+            applicationIdSuffix ".qa"
+            versionNameSuffix "-qa"
+            resValue("string", "app_name", "MyPagingThree QA")
+        }
+        uat {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+
+            applicationIdSuffix ".uat"
+            versionNameSuffix "-uat"
+            resValue("string", "app_name", "MyPagingThree UAT")
         }
     }
     compileOptions {
@@ -75,7 +127,6 @@ dependencies {
     testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
 
 
-
     def moshi_version = "1.13.0"
     implementation "com.squareup.moshi:moshi:$moshi_version"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
@@ -88,6 +139,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:4.13.0"
     kapt "com.github.bumptech.glide:compiler:4.13.0"
 
+    // module
     implementation project(path: ':appbase')
 
 }

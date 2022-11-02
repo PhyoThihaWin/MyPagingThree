@@ -21,6 +21,18 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            jniDebuggable = true
+            minifyEnabled false
+        }
+        qa {
+            jniDebuggable = true
+            minifyEnabled false
+        }
+        uat {
+            jniDebuggable = true
+            minifyEnabled false
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -62,6 +74,7 @@ dependencies {
     def coroutine_version = "1.6.4"
     kapt "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
 
+    // Module
     implementation project(path: ':data')
     implementation project(path: ':network')
 }
