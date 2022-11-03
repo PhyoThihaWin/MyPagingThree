@@ -1,15 +1,21 @@
-package com.pthw.listdialog
+package com.pthw.listdialog.ui
 
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.selection.SelectionTracker
+import com.pthw.listdialog.R
 import com.pthw.listdialog.base.BaseRecyclerAdapter
 import com.pthw.listdialog.base.BaseViewHolder
+import com.pthw.listdialog.databinding.ListItemDialogBinding
+import com.pthw.listdialog.utils.inflater
+import com.pthw.listdialog.utils.textAppearance
+import com.pthw.listdialog.utils.useColor
 
 
-class SearchListDialogAdapter<Item : Any?>(
+internal class SearchListDialogAdapter<Item : Any?>(
+    private val textStyle: Int = 0,
     private val onSelected: (Item) -> Unit,
     private val listCount: (Int) -> Unit
 ) :
@@ -48,6 +54,7 @@ class SearchListDialogAdapter<Item : Any?>(
         val details = ListDetails()
         private val binding = ListItemDialogBinding.bind(itemView)
         override fun bind(item: Item) {
+            if (textStyle != 0) binding.tvText.textAppearance(textStyle)
             binding.tvText.text = item.castString()
         }
 

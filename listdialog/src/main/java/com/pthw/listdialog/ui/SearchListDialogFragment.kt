@@ -1,23 +1,25 @@
-package com.pthw.listdialog
+package com.pthw.listdialog.ui
 
 import android.app.ActionBar.LayoutParams
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import androidx.annotation.StyleRes
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.selection.SelectionPredicates
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StorageStrategy
 import androidx.recyclerview.widget.LinearLayoutManager
-import dev.onenex.heal.appbase.core.BaseDialogFragment
-import dev.onenex.heal.appbase.extensions.afterTextChangedDelayed
-import dev.onenex.heal.appbase.extensions.gone
-import dev.onenex.heal.appbase.extensions.show
-import dev.onenex.heal.databinding.FragmentSearchListDialogBinding
-import dev.onenex.heal.features.dialog.*
-import timber.log.Timber
+import com.pthw.listdialog.base.BaseDialogFragment
+import com.pthw.listdialog.databinding.FragmentSearchListDialogBinding
+import com.pthw.listdialog.utils.afterTextChangedDelayed
+import com.pthw.listdialog.utils.gone
+import com.pthw.listdialog.utils.show
+import com.pthw.listdialog.utils.textAppearance
 import java.io.Serializable
 
+const val MAX_ITEM = 10
 
 class SearchListDialogFragment<Item : Any?>(
     private val onClick: (Item) -> Unit,
@@ -31,18 +33,7 @@ class SearchListDialogFragment<Item : Any?>(
 
     private var item: Item? = null
 
-    private val itemAdapter: SearchListDialogAdapter<Item> by lazy {
-        SearchListDialogAdapter(
-            {
-                onClick.invoke(it)
-                dismiss()
-            },
-            {
-                if (it > 0) binding.ivNoData.gone()
-                else binding.ivNoData.show()
-            }
-        )
-    }
+    private lateinit var itemAdapter: SearchListDialogAdapter<Item>
 
 
     private fun getSelectionTracker(): SelectionTracker<Long> {
@@ -79,7 +70,14 @@ class SearchListDialogFragment<Item : Any?>(
         items = arguments?.getSerializable("list") as List<Item>
         val hint = arguments?.getString("hint")
         val canSearch = arguments?.getBoolean("search", false)
-        Timber.i("item count is: ${items.size}")
+        val textStyle = arguments?.getInt("style", 0) ?: 0
+        Log.i("item count is: ", "${items.size}")
+
+        if (items.size > MAX_ITEM) {
+            dialog?.window?.setLayout(width, height)
+        } else {
+            dialog?.window?.setLayout(width, LayoutParams.WRAP_CONTENT)
+        }
 
         if (canSearch == true) {
             binding.tilSearch.show()
@@ -87,41 +85,65 @@ class SearchListDialogFragment<Item : Any?>(
             binding.tilSearch.gone()
         }
 
-        if (items.size > 10) {
-            dialog?.window?.setLayout(width, height)
-        } else {
-            dialog?.window?.setLayout(width, LayoutParams.WRAP_CONTENT)
+        if (textStyle != 0) {
+            binding.etSearch.textAppearance(textStyle)
+            binding.tvCancel.textAppearance(textStyle)
         }
 
         binding.tilSearch.hint = hint ?: "Search.."
-        binding.etSearch.afterTextChangedDelayed {
-            itemAdapter.filter.filter(it)
-        }
+        binding.etSearch.afterTextChangedDelayed { itemAdapter.filter.filter(it) }
+        binding.tvCancel.setOnClickListener { dismiss() }
+
+        setupList(items, textStyle)
+    }
+
+    private fun setupList(items: List<Item>, textStyle: Int) {
+        itemAdapter = SearchListDialogAdapter(
+            textStyle = textStyle,
+            onSelected = {
+                onClick.invoke(it)
+                dismiss()
+            },
+            listCount = {
+                if (it > 0) binding.ivNoData.gone()
+                else {
+                    if (items.size > MAX_ITEM)
+                        binding.ivNoData.show()
+                }
+            }
+        )
 
         binding.rvItem.layoutManager = LinearLayoutManager(requireContext())
         binding.rvItem.adapter = itemAdapter
         itemAdapter.setData(items.toMutableList())
         itemAdapter.setSelectionTracker(getSelectionTracker())
-
-        binding.tvCancel.setOnClickListener { dismiss() }
     }
 
 }
+
 
 interface GenericItem : Serializable {
     fun toMyString(): String
 }
 
+data class DialogConfigs<Item : Any?>(
+    val list: ArrayList<Item>,
+    val canSearch: Boolean = false,
+    val hint: String? = null,
+    @StyleRes val textStyle: Int = 0
+)
+
 fun <Item : Any?> SearchListDialogFragment<Item>.showList(
     fragmentManager: FragmentManager,
-    list: ArrayList<Item>,
-    canSearch: Boolean = false,
-    hint: String? = null
+    dialogConfigs: DialogConfigs<Item>
 ) {
     val bundle = Bundle()
-    bundle.putSerializable("list", list)
-    bundle.putBoolean("search", canSearch)
-    hint?.let { bundle.putString("hint", hint) }
+    dialogConfigs.apply {
+        bundle.putSerializable("list", list)
+        bundle.putBoolean("search", canSearch)
+        hint?.let { bundle.putString("hint", hint) }
+        bundle.putInt("style", textStyle)
+    }
     this.arguments = bundle
     this.show(fragmentManager, "Search List Dialog")
 }

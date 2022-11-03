@@ -1,4 +1,4 @@
-package com.pthw.listdialog
+package com.pthw.listdialog.ui
 
 import android.view.MotionEvent
 import androidx.recyclerview.selection.ItemDetailsLookup

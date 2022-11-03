@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorGrey">#B0B3C7</color>
+    <color name="colorPrimaryForRipple">#1B191F6E</color>
+    <color name="colorWhite">#FFFFFFFF</color>
+
+</resources>

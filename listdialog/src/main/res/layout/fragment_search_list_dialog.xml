@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_round_dialog"
-    tools:context=".features.dialog.ListBottomSheetDialogFragment">
+    tools:context=".ui.SearchListDialogFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,6 @@
 
             <EditText
                 android:id="@+id/et_search"
-                style="@style/TextViewFontBase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_search_appointment"
@@ -72,7 +71,6 @@
 
     <TextView
         android:id="@+id/tv_cancel"
-        style="@style/TextViewFontBase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_xlarge"
