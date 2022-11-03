@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="img_width_height">120dp</dimen>
+    <dimen name="slide_title">30dp</dimen>
+    <dimen name="slide_desc">16dp</dimen>
+    <dimen name="padding_for_mm_text">2sp</dimen>
+
+    <!-- Generic with ratio -->
+    <dimen name="margin_xsmall">2dp</dimen>
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_xmedium">5dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
+    <dimen name="margin_34dp">34dp</dimen>
+
+    <dimen name="margin_small_small">2dp</dimen>
+    <dimen name="margin_medium_1">9dp</dimen>
+    <dimen name="margin_medium_1x">12dp</dimen>
+    <dimen name="margin_medium_1xx">14dp</dimen>
+    <dimen name="margin_medium_1xxx">15dp</dimen>
+    <dimen name="margin_medium_2">16dp</dimen>
+    <dimen name="margin_medium_2x">17dp</dimen>
+    <dimen name="margin_medium_3">18dp</dimen>
+    <dimen name="margin_xlarge">32dp</dimen>
+    <dimen name="margin_xxlarge">36dp</dimen>
+    <dimen name="margin_xxxlarge">38dp</dimen>
+    <dimen name="margin_xxxxlarge">42dp</dimen>
+    <dimen name="margin_xlarge_2">72dp</dimen>
+
+    <dimen name="text_xSmall">10sp</dimen>
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_normal">14sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_sub_title">16sp</dimen>
+    <dimen name="text_medium_2">20sp</dimen>
+    <dimen name="text_large">18sp</dimen>
+    <dimen name="text_xlarge">25sp</dimen>
+    <dimen name="text_xxlarge">28sp</dimen>
+    <dimen name="text_error_size">24sp</dimen>
+    <dimen name="small_component_corner_size">15dp</dimen>
+
+    <dimen name="back_button_size">40dp</dimen>
+    <dimen name="button_size">50dp</dimen>
+    <dimen name="ui_elevation">2dp</dimen>
+    <dimen name="ui_elevation_1">1dp</dimen>
+    <dimen name="iv_logo_size">80dp</dimen>
+    <dimen name="phone_layout_padding">7dp</dimen>
+    <dimen name="bottom_navigation_icon_size">24dp</dimen>
+    <dimen name="ic_size_xxsmall">12dp</dimen>
+    <dimen name="ic_size_xsmall">14dp</dimen>
+    <dimen name="ic_size_normal">24dp</dimen>
+    <dimen name="ic_size_small">20dp</dimen>
+    <dimen name="ic_size_large">36dp</dimen>
+    <dimen name="ic_profile_size">96dp</dimen>
+    <dimen name="ic_half_profile_size">56dp</dimen>
+    <dimen name="ic_camera_size">30dp</dimen>
+
+    <dimen name="radius_medium">8dp</dimen>
+    <dimen name="radius_normal">16dp</dimen>
+    <dimen name="radius_small">4dp</dimen>
+    <dimen name="popup_width">400dp</dimen>
+    <dimen name="popup_height">500</dimen>
+
+    <dimen name="edit_text_phone_number_height">34dp</dimen>
+    <dimen name="home_margin_top">54dp</dimen>
+    <dimen name="bot_frg_margin_top">13dp</dimen>
+
+
+
+    <!--region edittext -->
+    <dimen name="edittext_height_normal">50dp</dimen>
+    <dimen name="margin_15dp">15dp</dimen>
+    <dimen name="margin_17dp">17dp</dimen>
+    <dimen name="margin_18dp">18dp</dimen>
+    <!--endregion -->
+
+</resources>

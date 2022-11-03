@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ListDialog" parent="Theme.MaterialComponents.Light.DarkActionBar">
+
+    </style>
+    <style name="SearchTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">?colorPrimary</item>
+        <item name="boxStrokeWidth">.7dp</item>
+        <item name="boxStrokeWidthFocused">.7dp</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <item name="hintTextColor">?colorPrimary</item>
+        <item name="android:colorControlActivated">?colorPrimary</item>
+    </style>
+</resources>
