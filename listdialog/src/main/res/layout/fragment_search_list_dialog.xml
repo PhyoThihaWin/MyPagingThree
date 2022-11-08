@@ -11,21 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/margin_medium"
-        android:layout_marginBottom="@dimen/margin_xxxxlarge"
+        android:layout_marginBottom="@dimen/margin_xxxxxlarge"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_search"
             style="@style/SearchTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Search.."
             android:layout_marginStart="@dimen/margin_xlarge"
             android:layout_marginTop="@dimen/margin_large"
             android:layout_marginEnd="@dimen/margin_xlarge"
-            android:hint="Search..">
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toTopOf="parent">
 
             <EditText
                 android:id="@+id/et_search"
@@ -35,9 +36,10 @@
                 android:drawablePadding="@dimen/margin_medium_2"
                 android:paddingStart="@dimen/margin_medium_2"
                 android:paddingEnd="@dimen/margin_medium_2"
+                android:singleLine="true"
                 android:textSize="@dimen/text_normal" />
-        </com.google.android.material.textfield.TextInputLayout>
 
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_item"
@@ -59,9 +61,9 @@
 
     <ImageView
         android:id="@+id/iv_no_data"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_baseline_hourglass_empty_24"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_no_search_data"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

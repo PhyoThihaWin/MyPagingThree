@@ -30,6 +30,7 @@
     <dimen name="margin_xxlarge">36dp</dimen>
     <dimen name="margin_xxxlarge">38dp</dimen>
     <dimen name="margin_xxxxlarge">42dp</dimen>
+    <dimen name="margin_xxxxxlarge">48dp</dimen>
     <dimen name="margin_xlarge_2">72dp</dimen>
 
     <dimen name="text_xSmall">10sp</dimen>

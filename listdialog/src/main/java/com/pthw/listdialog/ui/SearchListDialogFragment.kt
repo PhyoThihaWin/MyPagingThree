@@ -22,7 +22,7 @@ import java.io.Serializable
 const val MAX_ITEM = 10
 
 class SearchListDialogFragment<Item : Any?>(
-    private val onClick: (Item) -> Unit,
+    private val onClick: (Int, Item) -> Unit,
 ) :
     BaseDialogFragment<FragmentSearchListDialogBinding>() {
     override fun bindView(inflater: LayoutInflater): FragmentSearchListDialogBinding {
@@ -100,8 +100,8 @@ class SearchListDialogFragment<Item : Any?>(
     private fun setupList(items: List<Item>, textStyle: Int) {
         itemAdapter = SearchListDialogAdapter(
             textStyle = textStyle,
-            onSelected = {
-                onClick.invoke(it)
+            onSelected = { i, item ->
+                onClick.invoke(i, item)
                 dismiss()
             },
             listCount = {
@@ -133,9 +133,9 @@ data class DialogConfigs<Item : Any?>(
     @StyleRes val textStyle: Int = 0
 )
 
-fun <Item : Any?> SearchListDialogFragment<Item>.showList(
-    fragmentManager: FragmentManager,
-    dialogConfigs: DialogConfigs<Item>
+fun <Item : Any?> FragmentManager.showSearchListDialog(
+    dialogConfigs: DialogConfigs<Item>,
+    onClick: (Int, Item) -> Unit
 ) {
     val bundle = Bundle()
     dialogConfigs.apply {
@@ -144,8 +144,9 @@ fun <Item : Any?> SearchListDialogFragment<Item>.showList(
         hint?.let { bundle.putString("hint", hint) }
         bundle.putInt("style", textStyle)
     }
-    this.arguments = bundle
-    this.show(fragmentManager, "Search List Dialog")
+    val dialog = SearchListDialogFragment(onClick)
+    dialog.arguments = bundle
+    dialog.show(this, "Search List Dialog")
 }
 
 
@@ -153,13 +154,15 @@ fun <Item : Any?> SearchListDialogFragment<Item>.showList(
  * Sample Usage
  */
 /*
- SearchListDialogFragment<TestModel> {
-    requireContext().showShortToast(it.toMyString())
- }.showList(childFragmentManager, list, hint = "Search User Ha Ha")
 
- SearchListDialogFragment<String?> {
-    requireContext().showShortToast(it.orEmpty())
- }.showList(childFragmentManager, arr2.toCollection(kotlin.collections.ArrayList()))
+  val configs = DialogConfigs(
+        list = nationalities.toCollection(ArrayList()),
+        canSearch = true,
+        hint = "Search Nationality",
+  )
+  childFragmentManager.showSearchListDialog(configs) { item ->
+       binding.tvNationality.text = item
+  }
 
  data class TestModel(
     val id: String,

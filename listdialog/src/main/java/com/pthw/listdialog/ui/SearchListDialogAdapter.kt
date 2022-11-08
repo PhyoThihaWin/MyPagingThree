@@ -16,7 +16,7 @@ import com.pthw.listdialog.utils.useColor
 
 internal class SearchListDialogAdapter<Item : Any?>(
     private val textStyle: Int = 0,
-    private val onSelected: (Item) -> Unit,
+    private val onSelected: (Int, Item) -> Unit,
     private val listCount: (Int) -> Unit
 ) :
     BaseRecyclerAdapter<Item, SearchListDialogAdapter<Item>.ItemViewHolder>(),
@@ -42,7 +42,7 @@ internal class SearchListDialogAdapter<Item : Any?>(
                 holder.details.position = position.toLong()
                 if (it.isSelected(position.toLong())) {
                     holder.select()
-                    onSelected.invoke(data[position])
+                    onSelected.invoke(position, data[position])
                 } else {
                     holder.unSelect()
                 }
@@ -63,7 +63,7 @@ internal class SearchListDialogAdapter<Item : Any?>(
         }
 
         fun unSelect() {
-            binding.tvText.setBackgroundColor(binding.root.context.useColor(R.color.colorWhite))
+            binding.tvText.setBackgroundColor(binding.root.context.useColor(R.color.colorBackground))
         }
     }
 

@@ -3,5 +3,5 @@
     <color name="colorGrey">#B0B3C7</color>
     <color name="colorPrimaryForRipple">#1B191F6E</color>
     <color name="colorWhite">#FFFFFFFF</color>
-
+    <color name="colorBackground">#fff</color>
 </resources>
