@@ -37,6 +37,7 @@
                 android:paddingStart="@dimen/margin_medium_2"
                 android:paddingEnd="@dimen/margin_medium_2"
                 android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:textSize="@dimen/text_normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
