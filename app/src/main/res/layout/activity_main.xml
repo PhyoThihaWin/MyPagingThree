@@ -43,6 +43,14 @@
         android:text="Github Repo Mediator" />
 
     <Button
+        android:id="@+id/btn_sample_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="Sample Post" />
+
+    <Button
         android:id="@+id/btn_list_dialog"
         android:layout_marginTop="@dimen/margin_large"
         android:layout_width="match_parent"

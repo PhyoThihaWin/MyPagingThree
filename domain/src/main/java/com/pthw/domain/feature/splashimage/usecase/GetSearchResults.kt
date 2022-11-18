@@ -5,7 +5,6 @@ import com.pthw.domain.feature.splashimage.model.SplashPhoto
 import com.pthw.domain.feature.splashimage.repository.SplashPhotoRepository
 import com.pthw.domain.utils.CoroutineUseCase
 import com.pthw.domain.utils.DispatcherProvider
-import com.pthw.domain.utils.itsType
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

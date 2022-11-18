@@ -6,7 +6,7 @@ import kotlinx.coroutines.withContext
  * Created by Vincent on 2019-10-21
  */
 
-abstract class CoroutineUseCase<I, O> constructor(protected val dispatcherProvider: DispatcherProvider) {
+abstract class CoroutineUseCase<I, O> constructor(private val dispatcherProvider: DispatcherProvider) {
     suspend fun execute(params: I): O {
         return withContext(dispatcherProvider.io()) {
             provide(params)
@@ -16,7 +16,7 @@ abstract class CoroutineUseCase<I, O> constructor(protected val dispatcherProvid
     protected abstract suspend fun provide(params: I): O
 }
 
-abstract class CoroutineUseCaseParams<I, O> constructor(protected val dispatcherProvider: DispatcherProvider) {
+abstract class CoroutineUseCaseParams<I, O> constructor(private val dispatcherProvider: DispatcherProvider) {
     suspend fun execute(vararg params: I): O {
         return withContext(dispatcherProvider.io()) {
             provide(*params)
@@ -26,7 +26,6 @@ abstract class CoroutineUseCaseParams<I, O> constructor(protected val dispatcher
     protected abstract suspend fun provide(vararg params: I): O
 }
 
-@Suppress("UNCHECKED_CAST")
-fun <T> Any.itsType(): T {
-    return this as T
+fun Any.number(): Number  {
+    return this as Number
 }
