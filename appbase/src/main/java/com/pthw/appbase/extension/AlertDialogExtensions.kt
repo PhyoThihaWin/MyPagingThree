@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 
 fun Context.showAlertDialog(theme: Int = 0, dialogBuilder: AlertDialog.Builder.() -> Unit) {
     val builder = if (theme != 0) AlertDialog.Builder(this, theme) else AlertDialog.Builder(this)
@@ -42,4 +43,28 @@ fun AlertDialog.Builder.negativeButtonAutoDismiss(text: String = "Cancel") {
 
 fun AlertDialog.Builder.positiveButtonAutoDismiss(text: String = "Ok") {
     this.setPositiveButton(text) { dialogInterface, _ -> dialogInterface.dismiss() }
+}
+
+fun AppCompatActivity.showDialogWithOk(
+    title: String,
+    message: String,
+    okButtonText: String,
+    okButton: (DialogInterface) -> Unit
+) {
+
+    val dialogBuilder = AlertDialog.Builder(this)
+
+
+    dialogBuilder.setMessage(message)
+        .setCancelable(false)
+        .setPositiveButton(
+            okButtonText,
+            DialogInterface.OnClickListener { dialog, id ->
+                okButton(dialog)
+            })
+
+    val alert = dialogBuilder.create()
+    alert.setTitle(title)
+    alert.show()
+
 }

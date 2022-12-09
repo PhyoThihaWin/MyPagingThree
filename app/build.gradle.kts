@@ -115,4 +115,11 @@ dependencies {
     implementation(Paging.runtimeKtx)
     kapt (KotlinCoroutine.core)
 
+    // Google ModernStorage
+    implementation("com.google.modernstorage:modernstorage-bom:1.0.0-alpha06")
+    implementation("com.google.modernstorage:modernstorage-permissions")
+    implementation("com.google.modernstorage:modernstorage-storage")
+    implementation("com.google.modernstorage:modernstorage-photopicker")
+    implementation("com.squareup.okio:okio")
+
 }

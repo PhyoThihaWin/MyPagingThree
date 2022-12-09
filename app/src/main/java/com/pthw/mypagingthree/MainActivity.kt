@@ -9,6 +9,7 @@ import com.pthw.listdialog.utils.showShortToast
 import com.pthw.mypagingthree.databinding.ActivityMainBinding
 import com.pthw.mypagingthree.feature.article.ui.ArticleActivity
 import com.pthw.mypagingthree.feature.githubrepo.ui.SearchRepositoriesActivity
+import com.pthw.mypagingthree.feature.modern_storage.ModernStorageActivity
 import com.pthw.mypagingthree.feature.samplepost.ui.SamplePostActivity
 import com.pthw.mypagingthree.feature.splashimage.ui.SplashPhotoActivity
 
@@ -59,6 +60,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             supportFragmentManager.showSearchListDialog(configs) { i, item ->
                 showShortToast(item)
             }
+        }
+
+        binding.btnModernStorage.setOnClickListener {
+            openActivity(ModernStorageActivity::class.java)
         }
 
     }
