@@ -56,7 +56,6 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         }
     }
 
-
     private fun setupUI() {
         viewModel.post = intent.getSerializableExtra("post") as Post
         binding.tvTitle.text = viewModel.post?.title

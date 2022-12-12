@@ -26,6 +26,6 @@ abstract class CoroutineUseCaseParams<I, O> constructor(private val dispatcherPr
     protected abstract suspend fun provide(vararg params: I): O
 }
 
-fun Any.number(): Number  {
+fun Any.number(): Number {
     return this as Number
 }

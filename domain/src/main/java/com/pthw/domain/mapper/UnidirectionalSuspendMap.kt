@@ -7,4 +7,3 @@ interface UnidirectionalSuspendMap<F, T> {
 
     suspend fun map(item: F): T
 }
-

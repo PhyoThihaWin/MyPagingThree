@@ -6,7 +6,6 @@ import androidx.lifecycle.lifecycleScope
 import com.pthw.appbase.core.BaseActivity
 import com.pthw.appbase.core.fastadapter.bind
 import com.pthw.appbase.core.fastadapter.update
-import com.pthw.appbase.core.viewstate.ListViewState
 import com.pthw.appbase.core.viewstate.renderState
 import com.pthw.appbase.extension.openActivity
 import com.pthw.domain.feature.samplepost.model.Post
@@ -70,7 +69,4 @@ class SamplePostActivity : BaseActivity<ActivitySamplePostBinding>() {
             }
         }
     }
-
-
 }
-

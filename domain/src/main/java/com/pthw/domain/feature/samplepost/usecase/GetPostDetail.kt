@@ -10,7 +10,7 @@ import javax.inject.Inject
 class GetPostDetail @Inject constructor(
     dispatcherProvider: DispatcherProvider,
     private val repository: PostRepository,
-): CoroutineUseCaseParams<Any, List<Comment>>(dispatcherProvider) {
+) : CoroutineUseCaseParams<Any, List<Comment>>(dispatcherProvider) {
     override suspend fun provide(vararg params: Any): List<Comment> {
         val postId = params[0].number().toInt()
         return repository.getPostDetail(postId)

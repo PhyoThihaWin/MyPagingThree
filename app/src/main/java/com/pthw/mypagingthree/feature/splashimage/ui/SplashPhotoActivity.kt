@@ -80,7 +80,8 @@ class SplashPhotoActivity : BaseActivity<ActivitySplashImageBinding>() {
                 // empty view
                 if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached &&
-                    adapter.itemCount < 1) {
+                    adapter.itemCount < 1
+                ) {
                     recyclerView.isVisible = false
                     textViewEmpty.isVisible = true
                 } else {
@@ -93,13 +94,9 @@ class SplashPhotoActivity : BaseActivity<ActivitySplashImageBinding>() {
                     showShortToast(errorMessage)
                     Timber.e(errorState.error)
                 }
-                
-
             }
         }
-
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -126,9 +123,6 @@ class SplashPhotoActivity : BaseActivity<ActivitySplashImageBinding>() {
             })
         }
 
-
         return true
     }
-
-
 }

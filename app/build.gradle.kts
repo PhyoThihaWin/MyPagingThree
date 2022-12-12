@@ -1,9 +1,10 @@
 plugins {
-    id ("com.android.application")
-    id ("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
-    id ("dagger.hilt.android.plugin")
-    id ("kotlin-parcelize")
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 val appVersionName = "${rootProject.ext["versionMajor"]}.${rootProject.ext["versionMinor"]}.${rootProject.ext["versionPatch"]}.${rootProject.ext["versionBuild"]}"
@@ -98,12 +99,12 @@ dependencies {
     implementation(project(":appbase"))
     implementation(project(":listdialog"))
 
-    implementation ("androidx.core:core-ktx:1.7.0")
-    implementation ("androidx.appcompat:appcompat:1.5.1")
-    implementation ("com.google.android.material:material:1.6.1")
-    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-    implementation ("androidx.activity:activity-ktx:1.5.1")
+    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("com.google.android.material:material:1.6.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+    implementation("androidx.activity:activity-ktx:1.5.1")
 
     testImplementation(TestDep.junit)
     androidTestImplementation(TestDep.androidXJunit)
@@ -113,7 +114,7 @@ dependencies {
     hilt()
     implementation(CommonDep.timber)
     implementation(Paging.runtimeKtx)
-    kapt (KotlinCoroutine.core)
+    kapt(KotlinCoroutine.core)
 
     // Google ModernStorage
     implementation("com.google.modernstorage:modernstorage-bom:1.0.0-alpha06")
@@ -121,5 +122,8 @@ dependencies {
     implementation("com.google.modernstorage:modernstorage-storage")
     implementation("com.google.modernstorage:modernstorage-photopicker")
     implementation("com.squareup.okio:okio")
+}
 
+ktlint {
+    disabledRules.set(setOf("no-wildcard-imports"))
 }

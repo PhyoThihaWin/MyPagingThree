@@ -1,6 +1,7 @@
 plugins {
-    id ("java-library")
-    id ("org.jetbrains.kotlin.jvm")
+    id("java-library")
+    id("org.jetbrains.kotlin.jvm")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 java {
@@ -14,4 +15,8 @@ dependencies {
     testImplementation(KotlinCoroutine.test)
     api(KotlinCoroutine.core)
     implementation(Paging.common)
+}
+
+ktlint {
+    disabledRules.set(setOf("no-wildcard-imports"))
 }

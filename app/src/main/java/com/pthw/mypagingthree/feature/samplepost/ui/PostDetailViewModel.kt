@@ -5,7 +5,6 @@ import com.pthw.appbase.core.BaseViewModel
 import com.pthw.appbase.core.viewstate.ListViewState
 import com.pthw.domain.feature.samplepost.model.Comment
 import com.pthw.domain.feature.samplepost.model.Post
-import com.pthw.domain.feature.samplepost.repository.PostRepository
 import com.pthw.domain.feature.samplepost.usecase.GetPostDetail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PostDetailViewModel @Inject constructor(
     private val getPostDetail: GetPostDetail
-): BaseViewModel() {
+) : BaseViewModel() {
 
     var post: Post? = null
 

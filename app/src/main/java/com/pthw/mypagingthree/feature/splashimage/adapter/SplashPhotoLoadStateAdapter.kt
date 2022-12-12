@@ -41,4 +41,3 @@ class SplashPhotoLoadStateAdapter(private val retry: () -> Unit) :
         }
     }
 }
-

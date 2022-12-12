@@ -23,7 +23,8 @@ class RepoLoadStateAdapter(
                 parent.inflater(),
                 parent,
                 false
-            ), retry
+            ),
+            retry
         )
     }
 }

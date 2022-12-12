@@ -15,5 +15,4 @@ class GetSearchResults @Inject constructor(
     override suspend fun provide(params: String): Flow<PagingData<SplashPhoto>> {
         return repository.getSearchResults(params)
     }
-
 }

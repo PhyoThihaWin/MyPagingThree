@@ -65,8 +65,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.btnModernStorage.setOnClickListener {
             openActivity(ModernStorageActivity::class.java)
         }
-
     }
-
-
 }

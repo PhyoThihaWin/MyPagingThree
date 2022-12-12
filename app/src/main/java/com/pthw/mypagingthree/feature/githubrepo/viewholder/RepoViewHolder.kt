@@ -2,9 +2,8 @@ package com.pthw.mypagingthree.feature.githubrepo.viewholder
 
 import android.view.View
 import com.pthw.appbase.core.recyclerview.BaseViewHolder
-import com.pthw.mypagingthree.R
-import com.pthw.cache.feature.githubrepo.entity.RepoDbEntity
 import com.pthw.domain.feature.githubrepo.model.Repo
+import com.pthw.mypagingthree.R
 import com.pthw.mypagingthree.databinding.RepoViewItemBinding
 
 class RepoViewHolder(private val binding: RepoViewItemBinding) :
