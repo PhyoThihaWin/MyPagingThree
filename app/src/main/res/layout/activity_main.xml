@@ -62,9 +62,9 @@
         <Button
             android:id="@+id/btn_sample_post"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/margin_medium"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/margin_medium"
             android:layout_marginEnd="24dp"
             android:text="Sample Post"
             android:textAllCaps="false" />
@@ -95,6 +95,15 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:text="Google Modern Storage"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_firestore_chat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="FireStore Chat"
             android:textAllCaps="false" />
     </LinearLayout>
 

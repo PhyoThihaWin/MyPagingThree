@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
  */
 open class SmartScrollListener(
     private val mSmartScrollListener: OnSmartScrollListener,
-
+    private val direction: Int = 1,
     private val mFlag: Int = FLAG_VERTICALLY
 ) : RecyclerView.OnScrollListener() {
 
@@ -55,7 +55,7 @@ open class SmartScrollListener(
                 .findLastCompletelyVisibleItemPosition() == recyclerView.getAdapter().getItemCount() - 1
                 && !isListEndReached) {*/
 
-        if (mFlag == FLAG_VERTICALLY && !recyclerView.canScrollVertically(1) &&
+        if (mFlag == FLAG_VERTICALLY && !recyclerView.canScrollVertically(direction) &&
             !isListEndReached && scrollState == RecyclerView.SCROLL_STATE_IDLE) {
 
             isListEndReached = true
@@ -63,7 +63,7 @@ open class SmartScrollListener(
             mSmartScrollListener.onListEndReach()
         }
 
-        if (mFlag == FLAG_HORIZONTAL && !recyclerView.canScrollHorizontally(1) &&
+        if (mFlag == FLAG_HORIZONTAL && !recyclerView.canScrollHorizontally(direction) &&
             !isListEndReached && scrollState == RecyclerView.SCROLL_STATE_IDLE) {
             isListEndReached = true
             limit = recyclerView.layoutManager!!.itemCount

@@ -4,10 +4,12 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
-    id("org.jlleitschuh.gradle.ktlint")
+    id("org.jlleitschuh.gradle.ktlint") //--> ktlint <--
+    id ("com.google.gms.google-services")
+    id ("com.google.firebase.crashlytics")
 }
 
-val appVersionName = "${rootProject.ext["versionMajor"]}.${rootProject.ext["versionMinor"]}.${rootProject.ext["versionPatch"]}.${rootProject.ext["versionBuild"]}"
+val appVersionName = "${rootProject.ext["versionMajor"]}.${rootProject.ext["versionMinor"]}.${rootProject.ext["versionPatch"]}"
 val appVersionCode = rootProject.ext["versionMajor"].toString().toInt() * 1000000 + rootProject.ext["versionMinor"].toString().toInt() * 10000 + rootProject.ext["versionPatch"].toString().toInt() * 100 + rootProject.ext["versionBuild"].toString().toInt()
 
 android {
@@ -57,7 +59,7 @@ android {
             isShrinkResources = false
             isDebuggable = true
 
-            applicationIdSuffix = ".debug"
+//            applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
             resValue("string", "app_name", "MyPagingThree Debug")
         }
@@ -67,7 +69,7 @@ android {
             isShrinkResources = false
             isDebuggable = true
 
-            applicationIdSuffix = ".qa"
+//            applicationIdSuffix = ".qa"
             versionNameSuffix = "-qa"
             resValue("string", "app_name", "MyPagingThree QA")
         }
@@ -77,7 +79,7 @@ android {
             isShrinkResources = false
             isDebuggable = true
 
-            applicationIdSuffix = ".uat"
+//            applicationIdSuffix = ".uat"
             versionNameSuffix = "-uat"
             resValue("string", "app_name", "MyPagingThree UAT")
         }
@@ -116,12 +118,22 @@ dependencies {
     implementation(Paging.runtimeKtx)
     kapt(KotlinCoroutine.core)
 
+    //desugaring lib =>don't update this libs
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
+
     // Google ModernStorage
     implementation("com.google.modernstorage:modernstorage-bom:1.0.0-alpha06")
     implementation("com.google.modernstorage:modernstorage-permissions")
     implementation("com.google.modernstorage:modernstorage-storage")
     implementation("com.google.modernstorage:modernstorage-photopicker")
     implementation("com.squareup.okio:okio")
+
+    implementation (platform("com.google.firebase:firebase-bom:31.1.1"))
+    implementation ("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
+    implementation ("com.google.firebase:firebase-firestore-ktx")
+
+    implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
 }
 
 ktlint {

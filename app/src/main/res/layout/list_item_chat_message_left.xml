@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_medium_2"
+    android:gravity="top">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/margin_20dp"
+        android:contentDescription="Image of doctor"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        app:shapeAppearanceOverlay="@style/roundedCornersImageViewSmall" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_message"
+            style="@style/TextViewFontBase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_20dp"
+            android:background="@drawable/bg_rounded_layout"
+            android:backgroundTint="@color/colorWhite"
+            android:padding="@dimen/margin_medium_2"
+            tools:text="How about you like us to advise about your health?" />
+
+        <TextView
+            android:id="@+id/tv_date_time"
+            style="@style/TextViewFontBase"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:textColor="@color/colorGrey"
+            tools:text="09:59 AM" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
