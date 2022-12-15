@@ -12,4 +12,5 @@ class ChattingViewModel @Inject constructor(
 
 
     fun getChatListLiveData() = repository.getChatListLiveData()
+    fun getListenerRegistration() = repository.getListenerRegistration()
 }

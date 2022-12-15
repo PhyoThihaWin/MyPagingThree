@@ -4,16 +4,13 @@ import android.os.Handler
 import android.os.Looper
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.pthw.appbase.core.recyclerview.BaseRecyclerAdapter
-import com.pthw.appbase.core.recyclerview.BaseRecyclerViewAdapter
-import com.pthw.appbase.core.recyclerview.BaseViewHolder
-import com.pthw.appbase.core.recyclerview.diffCallBackWith
+import com.pthw.appbase.core.recyclerview.*
 import com.pthw.appbase.extension.inflater
 import com.pthw.domain.extension.dateTimeFormatter
 import com.pthw.mypagingthree.databinding.ListItemChatMessageLeftBinding
 import com.pthw.mypagingthree.databinding.ListItemChatMessageRightBinding
 
-class ChattingAdapter() : BaseRecyclerAdapter<ChatMessage, BaseViewHolder<ChatMessage>>() {
+class ChattingAdapter : BaseRecyclerPagingAdapter<ChatMessage, BaseViewHolder<ChatMessage>>() {
 
     companion object {
         const val MESSAGE_LEFT = 1

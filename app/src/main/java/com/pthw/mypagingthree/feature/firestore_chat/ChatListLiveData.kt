@@ -24,8 +24,6 @@ class ChatListLiveData(
                     val viewState = if (documentChange.newIndex == 0 && lastVisibleProduct != null)
                         ChattingViewState.AddNewDataState(mapper.map(addedData))
                     else ChattingViewState.AddOldDataState(mapper.map(addedData))
-
-                    Timber.w("Reached added old item, ${addedData}")
                     setValue(viewState)
                 }
                 DocumentChange.Type.MODIFIED -> {
@@ -44,6 +42,7 @@ class ChatListLiveData(
         val querySnapshotSize: Int = value.size()
         if (querySnapshotSize < CHAT_PAGE_SIZE) {
             repository.setLastProductReached(true)
+            setValue(ChattingViewState.ReachedEndState)
         } else {
             lastVisibleProduct = value.documents[querySnapshotSize - 1]
             repository.setLastVisibleProduct(lastVisibleProduct)
@@ -52,13 +51,13 @@ class ChatListLiveData(
 
     override fun onActive() {
         super.onActive()
-        listenerRegistration = query.addSnapshotListener(this)
+        if (listenerRegistration == null)
+            listenerRegistration = query.addSnapshotListener(this)
 
     }
 
     override fun onInactive() {
         super.onInactive()
-        listenerRegistration?.remove()
-
+        repository.setListenerRegistration(listenerRegistration)
     }
 }

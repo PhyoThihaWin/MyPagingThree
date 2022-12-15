@@ -1,13 +1,19 @@
 package com.pthw.mypagingthree.feature.firestore_chat
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.AbsListView
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.pthw.appbase.core.BaseActivity
 import com.pthw.appbase.core.fastadapter.SmartScrollListener
+import com.pthw.appbase.extension.UP_SCROLL_DIRECTION
+import com.pthw.appbase.extension.applySmartScrollListener
+import com.pthw.appbase.extension.asPaginationAdapter
+import com.pthw.appbase.extension.hideKeyboard
 import com.pthw.mypagingthree.databinding.ActivityChattingBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -34,8 +40,6 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
         binding.setupUI()
         renderChatData()
 
-//        initRecyclerViewOnScrollListener()
-
     }
 
     private fun ActivityChattingBinding.setupUI() {
@@ -44,8 +48,8 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
         rvChatting.apply {
             layoutManager = myLayoutManager
             setHasFixedSize(true)
-            adapter = chattingAdapter
-            addOnScrollListener(SmartScrollListener(this@ChattingActivity,-1))
+            adapter = chattingAdapter.asPaginationAdapter()
+            applySmartScrollListener(this@ChattingActivity, UP_SCROLL_DIRECTION)
         }
 
         ivSend.setOnClickListener {
@@ -84,11 +88,12 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
             when (it) {
                 is ChattingViewState.AddOldDataState -> {
                     chattingAdapter.addNewData(it.data)
-                    Timber.w("Reached added old item, ${it.data}")
                 }
                 is ChattingViewState.AddNewDataState -> {
                     chattingAdapter.addDataAtPositionZero(it.data)
-                    Timber.w("Reached added new item, ${it.data}")
+                }
+                is ChattingViewState.ReachedEndState -> {
+                    chattingAdapter.lastItemReached()
                 }
                 is ChattingViewState.ModifyDataState -> {
                     modifyProduct(it.data)
@@ -99,8 +104,7 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
                     Timber.w("Reached removed!, ${it.data}")
                 }
             }
-//            binding.loading.gone()
-//            binding.loadingTop.gone()
+            if (binding.loading.isVisible) binding.loading.hide()
         }
     }
 
@@ -156,8 +160,20 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
 
     override fun onListEndReach() {
 //        binding.loadingTop.show()
+        chattingAdapter.showFooterLoading()
         renderChatData()
         Timber.w("Reach end scroll top.")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        hideKeyboard()
+    }
+
+
+    override fun onDestroy() {
+        viewModel.getListenerRegistration()?.remove()
+        super.onDestroy()
     }
 
 }

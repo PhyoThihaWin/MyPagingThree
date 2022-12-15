@@ -5,5 +5,6 @@ sealed class ChattingViewState {
     data class AddOldDataState(val data: ChatMessage) : ChattingViewState()
     data class ModifyDataState(val data: ChatMessage) : ChattingViewState()
     data class RemoveDataState(val data: ChatMessage) : ChattingViewState()
+    object ReachedEndState : ChattingViewState()
     data class ErrorState(val msg: String)
 }
