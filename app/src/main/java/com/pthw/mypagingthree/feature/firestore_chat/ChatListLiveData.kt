@@ -40,11 +40,12 @@ class ChatListLiveData(
         }
 
         val querySnapshotSize: Int = value.size()
+        if (querySnapshotSize > 0)
+            lastVisibleProduct = value.documents[querySnapshotSize - 1]
         if (querySnapshotSize < CHAT_PAGE_SIZE) {
             repository.setLastProductReached(true)
             setValue(ChattingViewState.ReachedEndState)
         } else {
-            lastVisibleProduct = value.documents[querySnapshotSize - 1]
             repository.setLastVisibleProduct(lastVisibleProduct)
         }
     }
