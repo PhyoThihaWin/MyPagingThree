@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 /**
  * Created by Vincent on 12/6/18
  */
-abstract class BaseRecyclerViewAdapter<itemType, VH : BaseViewHolder<itemType>> :
+abstract class BaseListAdapter<itemType, VH : BaseViewHolder<itemType>> :
   ListAdapter<itemType, VH> {
 
   var recyclerViewItemClickListener: RecyclerViewItemClickListener? = null
