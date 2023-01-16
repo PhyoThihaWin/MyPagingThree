@@ -6,6 +6,7 @@ import com.pthw.appbase.core.viewstate.ListViewState
 import com.pthw.domain.feature.samplepost.model.Comment
 import com.pthw.domain.feature.samplepost.model.Post
 import com.pthw.domain.feature.samplepost.usecase.GetPostDetail
+import com.pthw.domain.utils.TwoParams
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -28,7 +29,7 @@ class PostDetailViewModel @Inject constructor(
         _comment.value = ListViewState.Loading()
         viewModelScope.launch {
             runCatching {
-                val data = getPostDetail.execute(postId)
+                val data = getPostDetail.execute(TwoParams(postId, "Test String"))
                 _comment.value = ListViewState.Success(data)
             }.getOrElse {
                 Timber.e(it)

@@ -16,16 +16,20 @@ abstract class CoroutineUseCase<I, O> constructor(private val dispatcherProvider
     protected abstract suspend fun provide(params: I): O
 }
 
-abstract class CoroutineUseCaseParams<I, O> constructor(private val dispatcherProvider: DispatcherProvider) {
-    suspend fun execute(vararg params: I): O {
-        return withContext(dispatcherProvider.io()) {
-            provide(*params)
-        }
-    }
+data class TwoParams<T1, T2>(
+    val one: T1,
+    val two: T2
+)
 
-    protected abstract suspend fun provide(vararg params: I): O
-}
+data class ThreeParams<T1, T2, T3>(
+    val one: T1,
+    val two: T2,
+    val three: T3
+)
 
-fun Any.number(): Number {
-    return this as Number
-}
+data class FourParams<T1, T2, T3, T4>(
+    val one: T1,
+    val two: T2,
+    val three: T3,
+    val four: T4
+)
