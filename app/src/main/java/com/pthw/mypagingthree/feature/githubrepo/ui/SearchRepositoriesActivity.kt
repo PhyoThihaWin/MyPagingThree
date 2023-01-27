@@ -120,7 +120,7 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
         retryButton.setOnClickListener { repoAdapter.retry() }
         list.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy != 0)  onScrollChanged(UiAction.Scroll(currentQuery = uiState.value.query))
+                if (dy != 0) onScrollChanged(UiAction.Scroll(currentQuery = uiState.value.query))
             }
         })
         val notLoading = repoAdapter.loadStateFlow
@@ -161,7 +161,7 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
                 // show empty list
                 emptyList.isVisible = isListEmpty
                 // Only show the list if refresh succeeds, either from the the local db or the remote.
-                list.isVisible =  loadState.source.refresh is LoadState.NotLoading || loadState.mediator?.refresh is LoadState.NotLoading
+                list.isVisible = loadState.source.refresh is LoadState.NotLoading || loadState.mediator?.refresh is LoadState.NotLoading
                 // Show loading spinner during initial load or refresh.
                 progressBar.isVisible = loadState.mediator?.refresh is LoadState.Loading
                 // Show the retry state if initial load or refresh fails.
@@ -178,7 +178,6 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
                         Toast.LENGTH_LONG
                     ).show()
                 }
-
             }
         }
     }

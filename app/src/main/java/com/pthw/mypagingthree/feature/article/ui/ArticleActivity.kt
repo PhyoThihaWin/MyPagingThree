@@ -7,7 +7,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
-import androidx.paging.LoadStates
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pthw.appbase.core.BaseActivity
@@ -50,12 +49,10 @@ class ArticleActivity : BaseActivity<ActivityArticleBinding>() {
                     binding.appendProgress.isVisible = it.source.append is LoadState.Loading
 
                     Timber.i(articleAdapter.itemCount.toString() + "ggg")
-
                 }
             }
         }
     }
-
 }
 
 private fun ActivityArticleBinding.bindAdapter(articleAdapter: ArticlePagingAdapter) {

@@ -10,10 +10,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.ConcatAdapter
 import com.pthw.appbase.core.BaseActivity
 import com.pthw.appbase.extension.showShortToast
 import com.pthw.mypagingthree.R
 import com.pthw.mypagingthree.databinding.ActivitySplashImageBinding
+import com.pthw.mypagingthree.feature.splashimage.adapter.SplashPhotoHeaderAdapter
 import com.pthw.mypagingthree.feature.splashimage.adapter.SplashPhotoLoadStateAdapter
 import com.pthw.mypagingthree.feature.splashimage.adapter.SplashPhotoPagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,13 +39,14 @@ class SplashPhotoActivity : BaseActivity<ActivitySplashImageBinding>() {
         adapter = SplashPhotoPagingAdapter {
             showShortToast(it.user.username)
         }
+        val headerAdapter = SplashPhotoHeaderAdapter()
         binding.apply {
             recyclerView.setHasFixedSize(true)
-            recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
+            val mAdapter = adapter.withLoadStateHeaderAndFooter(
                 header = SplashPhotoLoadStateAdapter { adapter.retry() },
                 footer = SplashPhotoLoadStateAdapter { adapter.retry() },
             )
-
+            recyclerView.adapter = ConcatAdapter(headerAdapter, mAdapter)
             buttonRetry.setOnClickListener {
                 adapter.retry()
             }
@@ -80,7 +83,8 @@ class SplashPhotoActivity : BaseActivity<ActivitySplashImageBinding>() {
                 // empty view
                 if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached &&
-                    adapter.itemCount < 1) {
+                    adapter.itemCount < 1
+                ) {
                     recyclerView.isVisible = false
                     textViewEmpty.isVisible = true
                 } else {
@@ -93,13 +97,9 @@ class SplashPhotoActivity : BaseActivity<ActivitySplashImageBinding>() {
                     showShortToast(errorMessage)
                     Timber.e(errorState.error)
                 }
-                
-
             }
         }
-
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -126,9 +126,6 @@ class SplashPhotoActivity : BaseActivity<ActivitySplashImageBinding>() {
             })
         }
 
-
         return true
     }
-
-
 }

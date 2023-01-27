@@ -23,4 +23,10 @@
     <string name="retry">Retry</string>
     <!-- endregion-->
 
+
+    <string name="added_old">addedOld</string>
+    <string name="added_new">addedNew</string>
+    <string name="modified">modified</string>
+    <string name="removed">removed</string>
+
 </resources>

@@ -16,10 +16,10 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "MyPagingThree"
-include (":app")
-include (":network")
-include (":cache")
-include (":data")
-include (":domain")
-include (":appbase")
-include (":listdialog")
+include(":app")
+include(":network")
+include(":cache")
+include(":data")
+include(":domain")
+include(":appbase")
+include(":listdialog")

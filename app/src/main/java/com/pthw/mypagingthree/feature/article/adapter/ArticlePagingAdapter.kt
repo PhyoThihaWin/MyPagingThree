@@ -21,7 +21,6 @@ class ArticlePagingAdapter : PagingDataAdapter<Article, ArticleViewHolder>(
         }
     }
 
-
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val tile = getItem(position)
         if (tile != null) {
@@ -38,6 +37,4 @@ class ArticlePagingAdapter : PagingDataAdapter<Article, ArticleViewHolder>(
             )
         )
     }
-
 }
-

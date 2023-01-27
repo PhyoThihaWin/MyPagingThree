@@ -10,11 +10,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-
 @HiltViewModel
 class ArticleViewModel @Inject constructor(
     private val repository: ArticleRepository
-): ViewModel() {
+) : ViewModel() {
 
     val items: Flow<PagingData<Article>> = repository.getArticles().cachedIn(viewModelScope)
 }

@@ -8,16 +8,18 @@ import com.pthw.appbase.extension.inflater
 import com.pthw.mypagingthree.R
 import com.pthw.mypagingthree.databinding.RepoViewItemBinding
 import com.pthw.mypagingthree.databinding.SeparatorViewItemBinding
+import com.pthw.mypagingthree.feature.githubrepo.ui.UiModel
 import com.pthw.mypagingthree.feature.githubrepo.viewholder.RepoSeparatorViewHolder
 import com.pthw.mypagingthree.feature.githubrepo.viewholder.RepoViewHolder
-import com.pthw.mypagingthree.feature.githubrepo.ui.UiModel
 
 class ReposAdapter : PagingDataAdapter<UiModel, RecyclerView.ViewHolder>(
-    diffCallBackWith(areItemTheSame = { old, new ->
-        (old is UiModel.RepoItem && new is UiModel.RepoItem && old.repo.fullName == new.repo.fullName) ||
+    diffCallBackWith(
+        areItemTheSame = { old, new ->
+            (old is UiModel.RepoItem && new is UiModel.RepoItem && old.repo.fullName == new.repo.fullName) ||
                 (old is UiModel.SeparatorItem && new is UiModel.SeparatorItem && old.description == new.description)
-    },
-        areContentsTheSame = { old, new -> old == new })
+        },
+        areContentsTheSame = { old, new -> old == new }
+    )
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

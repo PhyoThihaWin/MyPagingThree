@@ -8,7 +8,9 @@ import com.pthw.listdialog.ui.showSearchListDialog
 import com.pthw.listdialog.utils.showShortToast
 import com.pthw.mypagingthree.databinding.ActivityMainBinding
 import com.pthw.mypagingthree.feature.article.ui.ArticleActivity
+import com.pthw.mypagingthree.feature.firestore_chat.ChattingActivity
 import com.pthw.mypagingthree.feature.githubrepo.ui.SearchRepositoriesActivity
+import com.pthw.mypagingthree.feature.modern_storage.ModernStorageActivity
 import com.pthw.mypagingthree.feature.samplepost.ui.SamplePostActivity
 import com.pthw.mypagingthree.feature.splashimage.ui.SplashPhotoActivity
 
@@ -54,14 +56,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 list = list,
                 canSearch = true,
                 hint = "Search Avengers",
-                textStyle = R.style.TextViewFontBas
+                textStyle = R.style.TextViewFontBase
             )
             supportFragmentManager.showSearchListDialog(configs) { i, item ->
                 showShortToast(item)
             }
         }
 
+        binding.btnModernStorage.setOnClickListener {
+            openActivity(ModernStorageActivity::class.java)
+        }
+
+        binding.btnFirestoreChat.setOnClickListener {
+            openActivity(ChattingActivity::class.java)
+        }
     }
-
-
 }

@@ -17,7 +17,6 @@
 package com.pthw.domain.feature.article.model
 
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 /**
  * Immutable model class for an article

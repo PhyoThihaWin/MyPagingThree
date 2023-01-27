@@ -11,7 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
-
 @HiltViewModel
 class SplashPhotoViewModel @Inject constructor(
     private val repository: SplashPhotoRepository,
@@ -47,5 +46,4 @@ class SplashPhotoViewModel @Inject constructor(
 //    fun searchPhotos(query: String) {
 //        _userSearchText.value = query
 //    }
-
 }

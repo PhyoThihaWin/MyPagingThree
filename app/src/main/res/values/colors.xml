@@ -10,4 +10,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="separatorBackground">#AAAAAA</color>
     <color name="separatorText">#FFFFFF</color>
+    <color name="colorBackground">#f2f2f2</color>
 </resources>
