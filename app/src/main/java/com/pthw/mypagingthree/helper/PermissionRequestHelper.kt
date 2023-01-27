@@ -6,15 +6,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 
-class PermissionRequestHelper(
-    private val activity: AppCompatActivity,
-    private val permissions: Array<String>,
-) {
+class PermissionRequestHelper(private val activity: AppCompatActivity) {
 
     private lateinit var grantedCallBack: (Boolean) -> Unit
+    private var permissions: Array<String> = emptyArray()
 
-    fun launch(onGranted: (Boolean) -> Unit) {
-        grantedCallBack = onGranted
+    fun launch(permissions: Array<String>, onGranted: (Boolean) -> Unit) {
+        this.grantedCallBack = onGranted
+        this.permissions = permissions
         launchRequestPermission()
     }
 
@@ -35,8 +34,7 @@ class PermissionRequestHelper(
 
     private fun hasPermissions(): Boolean {
         return permissions.all {
-            ActivityCompat.checkSelfPermission(activity, it) ==
-                    PackageManager.PERMISSION_GRANTED
+            ActivityCompat.checkSelfPermission(activity, it) == PackageManager.PERMISSION_GRANTED
         }
     }
 
