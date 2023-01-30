@@ -14,10 +14,10 @@ jobs:
       - name: Set Up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 11
 
-#      - name: Run Test tasks
-#        run: ./gradlew test
+      - name: Run Test tasks
+        run: ./gradlew test
 
       - name: Run KtLint Task
         run: ./gradlew ktlintCheck
