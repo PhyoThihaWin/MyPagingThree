@@ -11,7 +11,6 @@ import android.provider.MediaStore
 import timber.log.Timber
 import java.io.File
 
-
 class URIPathHelper {
 
     fun getPath(context: Context, uri: Uri): String? {
@@ -29,7 +28,6 @@ class URIPathHelper {
                     return Environment.getExternalStorageDirectory()
                         .toString() + File.separator + split[1]
                 }
-
             } else if (isDownloadsDocument(uri)) {
                 val id = DocumentsContract.getDocumentId(uri)
                 Timber.w("Uri id is : $id")
@@ -59,7 +57,6 @@ class URIPathHelper {
                             .toString() + "/Download/" + fileName
                     } else null
                 }
-
             } else if (isMediaDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
                 val split = docId.split(":".toRegex()).toTypedArray()
@@ -143,6 +140,4 @@ class URIPathHelper {
     private fun isMediaDocument(uri: Uri): Boolean {
         return "com.android.providers.media.documents" == uri.authority
     }
-
-
 }

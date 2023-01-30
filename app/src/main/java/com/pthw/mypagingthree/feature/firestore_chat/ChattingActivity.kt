@@ -1,7 +1,6 @@
 package com.pthw.mypagingthree.feature.firestore_chat
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.AbsListView
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -20,7 +19,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
+class ChattingActivity :
+    BaseActivity<ActivityChattingBinding>(),
     SmartScrollListener.OnSmartScrollListener {
 
     override val binding: ActivityChattingBinding by lazy {
@@ -39,7 +39,6 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
 
         binding.setupUI()
         renderChatData()
-
     }
 
     private fun ActivityChattingBinding.setupUI() {
@@ -56,7 +55,8 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
             if (etMessage.text.isEmpty()) return@setOnClickListener
 
             val chatData = ChatData(
-                messageType = "text", messageData = MessageData(
+                messageType = "text",
+                messageData = MessageData(
                     id = "ggg",
                     message = etMessage.text.toString(),
                     dateTime = System.currentTimeMillis()
@@ -69,7 +69,6 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
         }
     }
 
-
     private fun sendMessage(chatData: ChatData) {
         val documentRef = firestore.collection("/Chat").document("appointment_1")
         val collection = documentRef.collection("message")
@@ -81,7 +80,6 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
                 Timber.w("Fail to send chat data!")
             }
     }
-
 
     private fun renderChatData() {
         viewModel.getChatListLiveData()?.observe(this) {
@@ -107,7 +105,6 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
             if (binding.loading.isVisible) binding.loading.hide()
         }
     }
-
 
     private fun modifyProduct(modifiedProduct: ChatMessage) {
 //        for (i in productList.indices) {
@@ -151,7 +148,6 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
 //                            renderChatData()
                             Timber.w("Reach end scroll top.")
                         }
-
                     }
                 }
             }
@@ -170,12 +166,8 @@ class ChattingActivity : BaseActivity<ActivityChattingBinding>(),
         hideKeyboard()
     }
 
-
     override fun onDestroy() {
         viewModel.getListenerRegistration()?.remove()
         super.onDestroy()
     }
-
 }
-
-

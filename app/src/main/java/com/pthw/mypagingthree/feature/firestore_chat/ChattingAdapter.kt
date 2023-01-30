@@ -51,7 +51,6 @@ class ChattingAdapter : BaseRecyclerPagingAdapter<ChatMessage, BaseViewHolder<Ch
     }
 }
 
-
 class ChatLeftViewHolder(val binding: ListItemChatMessageLeftBinding) :
     BaseViewHolder<ChatMessage.ChatLeft>(binding.root) {
     override fun bind(item: ChatMessage.ChatLeft) {
@@ -70,7 +69,6 @@ class ChatRightViewHolder(val binding: ListItemChatMessageRightBinding) :
             tvDateTime.text = item.data.messageData?.dateTime?.dateTimeFormatter("hh:mm a")
         }
     }
-
 }
 
 sealed class ChatMessage {

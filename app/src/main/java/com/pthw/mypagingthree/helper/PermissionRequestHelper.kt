@@ -37,5 +37,4 @@ class PermissionRequestHelper(private val activity: AppCompatActivity) {
             ActivityCompat.checkSelfPermission(activity, it) == PackageManager.PERMISSION_GRANTED
         }
     }
-
 }

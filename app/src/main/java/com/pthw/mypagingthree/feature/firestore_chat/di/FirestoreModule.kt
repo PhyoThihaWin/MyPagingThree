@@ -1,8 +1,6 @@
 package com.pthw.mypagingthree.feature.firestore_chat.di
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.pthw.data.feature.article.repository_impl.ArticleRepositoryImpl
-import com.pthw.domain.feature.article.repository.ArticleRepository
 import com.pthw.mypagingthree.feature.firestore_chat.ChattingRepository
 import com.pthw.mypagingthree.feature.firestore_chat.ChattingRepositoryImpl
 import dagger.Binds

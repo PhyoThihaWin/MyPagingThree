@@ -4,7 +4,6 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
-import timber.log.Timber
 import javax.inject.Inject
 
 class ChattingRepositoryImpl @Inject constructor(
@@ -41,6 +40,4 @@ class ChattingRepositoryImpl @Inject constructor(
     override fun setListenerRegistration(registration: ListenerRegistration?) {
         this.lr = registration
     }
-
-
 }

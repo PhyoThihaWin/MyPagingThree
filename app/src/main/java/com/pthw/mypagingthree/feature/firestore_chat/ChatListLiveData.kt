@@ -2,7 +2,6 @@ package com.pthw.mypagingthree.feature.firestore_chat
 
 import androidx.lifecycle.LiveData
 import com.google.firebase.firestore.*
-import timber.log.Timber
 
 class ChatListLiveData(
     private val query: Query,
@@ -54,7 +53,6 @@ class ChatListLiveData(
         super.onActive()
         if (listenerRegistration == null)
             listenerRegistration = query.addSnapshotListener(this)
-
     }
 
     override fun onInactive() {

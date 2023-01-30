@@ -50,4 +50,8 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("com.google.android.material:material:1.7.0")
     implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
+
+    testImplementation(TestDep.junit)
+    androidTestImplementation(TestDep.androidXJunit)
+    androidTestImplementation(Espresso.core)
 }

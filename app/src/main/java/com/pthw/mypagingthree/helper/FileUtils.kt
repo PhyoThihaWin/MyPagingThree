@@ -12,7 +12,6 @@ import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 fun Activity.getUriAndResize(imageUri: Uri): Uri {
     val pfd = this.contentResolver.openFileDescriptor(imageUri, "r")
     val bitmap =
@@ -22,8 +21,10 @@ fun Activity.getUriAndResize(imageUri: Uri): Uri {
     val resized = bitmap.resizeBitmap(800)
     val stream = this.contentResolver.openInputStream(imageUri)
     val exitInterface = stream?.let { ExifInterface(it) }
-    val orientation = exitInterface?.getAttributeInt(ExifInterface.TAG_ORIENTATION,
-        ExifInterface.ORIENTATION_NORMAL)
+    val orientation = exitInterface?.getAttributeInt(
+        ExifInterface.TAG_ORIENTATION,
+        ExifInterface.ORIENTATION_NORMAL
+    )
     val rotated = when (orientation) {
         ExifInterface.ORIENTATION_ROTATE_90 ->
             rotateImage(resized, 90)
@@ -36,7 +37,8 @@ fun Activity.getUriAndResize(imageUri: Uri): Uri {
 
     val path = MediaStore.Images.Media.insertImage(
         this.contentResolver,
-        rotated, "Profile_${Calendar.SECOND}", null)
+        rotated, "Profile_${Calendar.SECOND}", null
+    )
     pfd?.close()
     return Uri.parse(path)
 }
@@ -75,8 +77,10 @@ fun Activity.rotateImageIfRequired(bitmap: Bitmap, imageUri: Uri): Bitmap? {
         val exitInterface = inputStream?.let {
             ExifInterface(it)
         }
-        val orientation = exitInterface?.getAttributeInt(ExifInterface.TAG_ORIENTATION,
-            ExifInterface.ORIENTATION_NORMAL)
+        val orientation = exitInterface?.getAttributeInt(
+            ExifInterface.TAG_ORIENTATION,
+            ExifInterface.ORIENTATION_NORMAL
+        )
         val rotated = when (orientation) {
             ExifInterface.ORIENTATION_ROTATE_90 ->
                 rotateImage(bitmap, 90)
@@ -87,11 +91,9 @@ fun Activity.rotateImageIfRequired(bitmap: Bitmap, imageUri: Uri): Bitmap? {
             else -> bitmap
         }
         return rotated
-    }
-    catch (e: IOException) {
+    } catch (e: IOException) {
         return null
-    }
-    finally {
+    } finally {
         inputStream?.close()
     }
 }
@@ -144,23 +146,16 @@ fun Activity.createResizeImageFile(): File {
     }
 }
 
-
 fun Bitmap.resizeBitmap(maxSize: Int): Bitmap {
     var width = this.width
     var height = this.height
-    val ratio = width.toFloat()/height.toFloat()
-    if (ratio>0) {
+    val ratio = width.toFloat() / height.toFloat()
+    if (ratio> 0) {
         width = maxSize
-        height = (width/ ratio).toInt()
-    }
-    else {
+        height = (width / ratio).toInt()
+    } else {
         height = maxSize
         width = (height * ratio).toInt()
     }
     return Bitmap.createScaledBitmap(this, width, height, true)
 }
-
-
-
-
-

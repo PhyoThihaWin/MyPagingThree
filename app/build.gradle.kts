@@ -4,9 +4,9 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
-    id("org.jlleitschuh.gradle.ktlint") //--> ktlint <--
-    id ("com.google.gms.google-services")
-    id ("com.google.firebase.crashlytics")
+    id("org.jlleitschuh.gradle.ktlint") // --> ktlint <--
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 val appVersionName = "${rootProject.ext["versionMajor"]}.${rootProject.ext["versionMinor"]}.${rootProject.ext["versionPatch"]}"
@@ -118,7 +118,7 @@ dependencies {
     implementation(Paging.runtimeKtx)
     kapt(KotlinCoroutine.core)
 
-    //desugaring lib =>don't update this libs
+    // desugaring lib =>don't update this libs
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // Google ModernStorage
@@ -128,12 +128,12 @@ dependencies {
     implementation("com.google.modernstorage:modernstorage-photopicker")
     implementation("com.squareup.okio:okio")
 
-    implementation (platform("com.google.firebase:firebase-bom:31.1.1"))
-    implementation ("com.google.firebase:firebase-analytics-ktx")
+    implementation(platform("com.google.firebase:firebase-bom:31.1.1"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
-    implementation ("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
 
-    implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
 }
 
 ktlint {

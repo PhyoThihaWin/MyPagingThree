@@ -7,7 +7,6 @@ import com.pthw.appbase.core.recyclerview.diffCallBackWith
 import com.pthw.listdialog.utils.inflater
 import com.pthw.mypagingthree.databinding.ListItemSplashphotoHeaderBinding
 
-
 class SplashPhotoHeaderAdapter() : BaseListAdapter<String, BaseViewHolder<String>>(
     diffCallback = diffCallBackWith(
         areContentsTheSame = { item1, item2 ->
@@ -31,7 +30,6 @@ class SplashPhotoHeaderAdapter() : BaseListAdapter<String, BaseViewHolder<String
     class SplashPhotoHeaderViewHolder(binding: ListItemSplashphotoHeaderBinding) :
         BaseViewHolder<String>(binding.root) {
         override fun bind(item: String) {
-
         }
     }
 }
