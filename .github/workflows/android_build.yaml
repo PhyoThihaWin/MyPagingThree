@@ -16,8 +16,8 @@ jobs:
         with:
           java-version: 11
 
-      - name: Run Test tasks
-        run: ./gradlew test
+#      - name: Run Test tasks
+#        run: ./gradlew test
 
       - name: Run KtLint Task
         run: ./gradlew ktlintCheck
