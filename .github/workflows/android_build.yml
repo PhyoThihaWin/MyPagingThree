@@ -1,48 +1,50 @@
-name: Android Build
+name: Android CI
+
+env:
+  # The name of the main module repository
+  main_project_module: app
+
+  # The name of the Play Store
+  playstore_name: Frogobox ID
 
 on:
+  # Triggers the workflow on push or pull request events but only for default and protected branches
   push:
-    branches:
-      - main
-      - master
-      - 'releases/**'
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v1
 
-      - name: Set up JDK
+      # Set Current Date As Env Variable
+      - name: Set current date as env variable
+        run: echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      # Set Repository Name As Env Variable
+      - name: Set repository name as env variable
+        run: echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+
+      - name: Set Up JDK
         uses: actions/setup-java@v1
         with:
-            distribution: 'zulu'
-            java-version: '11'
+          java-version: 11
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
-
-      - name: Cache Gradle
-        uses: actions/cache@v1
-        with:
-            path: ~/.gradle/caches/
-            key: cache-clean-gradle-${{ matrix.os }}-${{ matrix.jdk }}
-
-      - name: Cache Gradle Wrapper
-        uses: actions/cache@v1
-        with:
-            path: ~/.gradle/wrapper/
-            key: cache-clean-wrapper-${{ matrix.os }}-${{ matrix.jdk }}
-
-      - name: Make gradlew executable
+      - name: Change wrapper permissions
         run: chmod +x ./gradlew
 
-      - name: Run Test tasks
+      # Run Tests Build
+      - name: Run gradle tests
         run: ./gradlew test
 
-      - name: Run KtLint Task
-        run: ./gradlew ktlintCheck
-
-      - name: Build Project
-        run: ./gradlew assemble
+      # Run Build Project
+      - name: Build gradle project
+        run: ./gradlew build
