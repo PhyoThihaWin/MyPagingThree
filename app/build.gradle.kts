@@ -1,12 +1,13 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+//    id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
     id("org.jlleitschuh.gradle.ktlint") // --> ktlint <--
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    kotlin("android")
 }
 
 val appVersionName = "${rootProject.ext["versionMajor"]}.${rootProject.ext["versionMinor"]}.${rootProject.ext["versionPatch"]}"

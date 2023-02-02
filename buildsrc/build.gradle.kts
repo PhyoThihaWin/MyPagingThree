@@ -7,4 +7,3 @@ plugins {
 repositories {
     mavenCentral()
 }
-

@@ -1,6 +1,11 @@
 name: Android Build
 
-on: pull_request
+on:
+  push:
+    branches:
+      - main
+      - master
+      - 'releases/**'
 
 
 jobs:

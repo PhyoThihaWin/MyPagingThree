@@ -1,3 +1,15 @@
+object BuildConfigConst {
+    private const val compileSdk = 33
+    private const val minSdk = 21
+    private const val targetSdk = 33
+    private const val buildToolVersion = "33.0.0"
+    const val versionMajor = 3
+    const val versionMinor = 9
+    const val versionPatch = 0
+    const val versionBuild = 0
+    const val versionName = "$versionMajor.$versionMinor.$versionPatch"
+}
+
 object OkHttp {
     private const val version = "4.10.0"
     const val client = "com.squareup.okhttp3:okhttp:$version"
@@ -10,6 +22,7 @@ object Retrofit {
     const val core = "com.squareup.retrofit2:retrofit:$version"
     const val moshi_converter = "com.squareup.retrofit2:converter-moshi:$version"
 }
+
 
 internal object OldCommonLibs {
     const val desugar_lib = "com.android.tools:desugar_jdk_libs:1.0.10"
@@ -24,6 +37,7 @@ internal object OldCommonLibs {
     const val circle_image_view = "de.hdodenhof:circleimageview:3.0.0"
     const val shape_of_views = "com.github.florent37:shapeofview:1.4.7"
 }
+
 
 object KotlinCoroutine {
     private const val version = "1.6.4"
@@ -51,11 +65,16 @@ object DataStoreDep {
     const val datastorePreferences = "androidx.datastore:datastore-preferences:1.0.0"
 }
 
-object TestDep {
-    const val junit = "junit:junit:4.13.2"
-    const val androidXJunit = "androidx.test.ext:junit:1.1.3"
+object UatBuild {
+    val isDebuggable = true
+    val isMinifyEnabled = false
+    val isShrinkResources = false
 }
 
-object Espresso {
-    const val core = "androidx.test.espresso:espresso-core:3.4.0"
+object PreProdBuild {
+    val isDebuggable = true
+    val isMinifyEnabled = false
+    val isShrinkResources = false
 }
+
+
