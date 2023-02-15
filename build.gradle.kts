@@ -45,8 +45,8 @@ ext {
     set("credentialKeyPassword", credentialProperties["keyPassword"].toString())
 
     // VERSION CONFIG
-    set("versionMajor", credentialProperties["versionMajor"])
-    set("versionMinor", credentialProperties["versionMinor"])
-    set("versionPatch", credentialProperties["versionPatch"])
-    set("versionBuild", credentialProperties["versionBuild"])
+//    set("versionMajor", credentialProperties["versionMajor"])
+//    set("versionMinor", credentialProperties["versionMinor"])
+//    set("versionPatch", credentialProperties["versionPatch"])
+//    set("versionBuild", credentialProperties["versionBuild"])
 }

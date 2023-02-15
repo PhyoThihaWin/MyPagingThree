@@ -10,21 +10,21 @@ sealed class ViewState<out T> {
 }
 
 fun <T> ViewState<T>.renderState(
-    idle: (() -> Unit)? = null,
-    loading: (() -> Unit)? = null,
-    success: ((T) -> Unit)? = null,
-    error: ((String) -> Unit)? = null,
+    idle: (() -> Unit) = {},
+    loading: (() -> Unit) = {},
+    error: ((msg: String) -> Unit) = {},
+    success: ((data: T) -> Unit),
 ) {
     when (this) {
         is ViewState.Loading -> {
-            loading?.invoke()
+            loading.invoke()
         }
         is ViewState.Success -> {
-            success?.invoke(this.value)
+            success.invoke(this.value)
         }
         is ViewState.Error -> {
-            error?.invoke(this.errorMessage)
+            error.invoke(this.errorMessage)
         }
-        else -> idle?.invoke()
+        else -> idle.invoke()
     }
 }

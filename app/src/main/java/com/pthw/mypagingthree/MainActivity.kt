@@ -13,6 +13,7 @@ import com.pthw.mypagingthree.feature.githubrepo.ui.SearchRepositoriesActivity
 import com.pthw.mypagingthree.feature.modern_storage.ModernStorageActivity
 import com.pthw.mypagingthree.feature.samplepost.ui.SamplePostActivity
 import com.pthw.mypagingthree.feature.splashimage.ui.SplashPhotoActivity
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override val binding: ActivityMainBinding by lazy {
@@ -70,5 +71,57 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.btnFirestoreChat.setOnClickListener {
             openActivity(ChattingActivity::class.java)
         }
+
+
+
+// Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragment it will be viewLifecycleOwner/getViewLifecycleOwner().
+        binding.carousel.registerLifecycle(lifecycle)
+
+        val list = mutableListOf<CarouselItem>()
+
+// Image URL with caption
+        list.add(
+            CarouselItem(
+                imageUrl = "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080",
+                caption = "Photo by Aaron Wu on Unsplash"
+            )
+        )
+
+// Just image URL
+        list.add(
+            CarouselItem(
+                imageUrl = "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"
+            )
+        )
+
+// Image URL with header
+//        val headers = mutableMapOf<String, String>()
+//        headers["header_key"] = "header_value"
+//
+//        list.add(
+//            CarouselItem(
+//                imageUrl = "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080",
+//                headers = headers
+//            )
+//        )
+
+//// Image drawable with caption
+//        list.add(
+//            CarouselItem(
+//                imageDrawable = R.drawable.image_1,
+//                caption = "Photo by Kimiya Oveisi on Unsplash"
+//            )
+//        )
+//
+//// Just image drawable
+//        list.add(
+//            CarouselItem(
+//                imageDrawable = R.drawable.image_2
+//            )
+//        )
+
+// ...
+
+        binding.carousel.setData(list)
     }
 }

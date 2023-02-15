@@ -1,5 +1,8 @@
 package com.pthw.appbase.core.viewstate
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
+
 sealed class ListViewState<out T> {
     open operator fun invoke(): T? = null
 
@@ -11,25 +14,25 @@ sealed class ListViewState<out T> {
 }
 
 fun <T> ListViewState<T>.renderState(
-    idle: (() -> Unit)? = null,
-    loading: (() -> Unit)? = null,
-    success: ((T) -> Unit)? = null,
-    error: ((String) -> Unit)? = null,
-    noMore: (() -> Unit)? = null
+    idle: (() -> Unit) = {},
+    loading: (() -> Unit) = {},
+    error: ((msg: String) -> Unit) = {},
+    noMoreContent: (() -> Unit) = {},
+    success: ((data: T) -> Unit),
 ) {
     when (this) {
         is ListViewState.Loading -> {
-            loading?.invoke()
+            loading.invoke()
         }
         is ListViewState.Success -> {
-            success?.invoke(this.value)
+            success.invoke(this.value)
         }
         is ListViewState.Error -> {
-            error?.invoke(this.errorMessage)
+            error.invoke(this.errorMessage)
         }
         is ListViewState.NoMoreContent -> {
-            noMore?.invoke()
+            noMoreContent.invoke()
         }
-        else -> idle?.invoke()
+        else -> idle.invoke()
     }
 }

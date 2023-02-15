@@ -5,23 +5,20 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
     id("org.jlleitschuh.gradle.ktlint") //--> ktlint <--
-    id ("com.google.gms.google-services")
-    id ("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
-
-val appVersionName = "${rootProject.ext["versionMajor"]}.${rootProject.ext["versionMinor"]}.${rootProject.ext["versionPatch"]}"
-val appVersionCode = rootProject.ext["versionMajor"].toString().toInt() * 1000000 + rootProject.ext["versionMinor"].toString().toInt() * 10000 + rootProject.ext["versionPatch"].toString().toInt() * 100 + rootProject.ext["versionBuild"].toString().toInt()
 
 android {
     namespace = "com.pthw.mypagingthree"
-    compileSdk = 32
+    compileSdk = BuildConfigConst.compileSdk
 
     defaultConfig {
         applicationId = "com.pthw.mypagingthree"
-        minSdk = 21
-        targetSdk = 32
-        versionCode = appVersionCode
-        versionName = appVersionName
+        minSdk = BuildConfigConst.minSdk
+        targetSdk = BuildConfigConst.targetSdk
+        versionCode = BuildConfigConst.appVersionCode
+        versionName = BuildConfigConst.appVersionName
         setProperty("archivesBaseName", "MyPagingThree-$versionName")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -46,18 +43,18 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = true
-            isShrinkResources = true
-            isDebuggable = false
+            isMinifyEnabled = ReleaseBuild.isMinifyEnabled
+            isShrinkResources = ReleaseBuild.isShrinkResources
+            isDebuggable = ReleaseBuild.isDebuggable
 
             resValue("string", "app_name", "MyPagingThree App")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         debug {
             signingConfig = signingConfigs.getByName("debug")
-            isMinifyEnabled = false
-            isShrinkResources = false
-            isDebuggable = true
+            isMinifyEnabled = DebugBuild.isMinifyEnabled
+            isShrinkResources = DebugBuild.isShrinkResources
+            isDebuggable = DebugBuild.isDebuggable
 
 //            applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
@@ -65,9 +62,9 @@ android {
         }
         register("qa") {
             signingConfig = signingConfigs.getByName("debug")
-            isMinifyEnabled = false
-            isShrinkResources = false
-            isDebuggable = true
+            isMinifyEnabled = DebugBuild.isMinifyEnabled
+            isShrinkResources = DebugBuild.isShrinkResources
+            isDebuggable = DebugBuild.isDebuggable
 
 //            applicationIdSuffix = ".qa"
             versionNameSuffix = "-qa"
@@ -75,9 +72,9 @@ android {
         }
         register("uat") {
             signingConfig = signingConfigs.getByName("debug")
-            isMinifyEnabled = false
-            isShrinkResources = false
-            isDebuggable = true
+            isMinifyEnabled = UatBuild.isMinifyEnabled
+            isShrinkResources = UatBuild.isShrinkResources
+            isDebuggable = UatBuild.isDebuggable
 
 //            applicationIdSuffix = ".uat"
             versionNameSuffix = "-uat"
@@ -128,12 +125,14 @@ dependencies {
     implementation("com.google.modernstorage:modernstorage-photopicker")
     implementation("com.squareup.okio:okio")
 
-    implementation (platform("com.google.firebase:firebase-bom:31.1.1"))
-    implementation ("com.google.firebase:firebase-analytics-ktx")
+    implementation(platform("com.google.firebase:firebase-bom:31.1.1"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
-    implementation ("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
 
-    implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
+
+    implementation("org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0")
 }
 
 ktlint {

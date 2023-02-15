@@ -18,6 +18,8 @@ import com.pthw.mypagingthree.databinding.ListItemPostCommentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import java.util.Timer
 
 @AndroidEntryPoint
 class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
@@ -39,14 +41,14 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
                     loading = {
                         binding.progressBar.show()
                     },
-                    success = { item ->
+                    success = { data ->
                         binding.progressBar.gone()
-                        binding.rvComment.update(item.toMutableList())
+                        binding.rvComment.update(data.toMutableList())
                     },
                     error = { msg ->
                         binding.progressBar.gone()
                         showShortToast(msg)
-                    }
+                    },
                 )
             }
         }
