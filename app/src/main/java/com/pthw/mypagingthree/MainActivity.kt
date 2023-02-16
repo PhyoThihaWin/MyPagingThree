@@ -8,6 +8,7 @@ import com.pthw.listdialog.ui.showSearchListDialog
 import com.pthw.listdialog.utils.showShortToast
 import com.pthw.mypagingthree.databinding.ActivityMainBinding
 import com.pthw.mypagingthree.feature.article.ui.ArticleActivity
+import com.pthw.mypagingthree.feature.filepick.HandlePathOzActivity
 import com.pthw.mypagingthree.feature.firestore_chat.ChattingActivity
 import com.pthw.mypagingthree.feature.githubrepo.ui.SearchRepositoriesActivity
 import com.pthw.mypagingthree.feature.modern_storage.ModernStorageActivity
@@ -72,56 +73,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             openActivity(ChattingActivity::class.java)
         }
 
-
-
-// Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragment it will be viewLifecycleOwner/getViewLifecycleOwner().
-        binding.carousel.registerLifecycle(lifecycle)
-
-        val list = mutableListOf<CarouselItem>()
-
-// Image URL with caption
-        list.add(
-            CarouselItem(
-                imageUrl = "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080",
-                caption = "Photo by Aaron Wu on Unsplash"
-            )
-        )
-
-// Just image URL
-        list.add(
-            CarouselItem(
-                imageUrl = "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080"
-            )
-        )
-
-// Image URL with header
-//        val headers = mutableMapOf<String, String>()
-//        headers["header_key"] = "header_value"
-//
-//        list.add(
-//            CarouselItem(
-//                imageUrl = "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080",
-//                headers = headers
-//            )
-//        )
-
-//// Image drawable with caption
-//        list.add(
-//            CarouselItem(
-//                imageDrawable = R.drawable.image_1,
-//                caption = "Photo by Kimiya Oveisi on Unsplash"
-//            )
-//        )
-//
-//// Just image drawable
-//        list.add(
-//            CarouselItem(
-//                imageDrawable = R.drawable.image_2
-//            )
-//        )
-
-// ...
-
-        binding.carousel.setData(list)
+        binding.btnFilePick.setOnClickListener {
+            openActivity(HandlePathOzActivity::class.java)
+        }
     }
 }

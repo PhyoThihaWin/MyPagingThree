@@ -1,4 +1,4 @@
-package com.pthw.mypagingthree.helper
+package com.pthw.mypagingthree.helper.contracts_helper
 
 import android.content.pm.PackageManager
 import android.os.Build
@@ -35,6 +35,14 @@ class PermissionRequestHelper(private val activity: AppCompatActivity) {
     private fun hasPermissions(): Boolean {
         return permissions.all {
             ActivityCompat.checkSelfPermission(activity, it) == PackageManager.PERMISSION_GRANTED
+        }
+    }
+
+    fun shouldShowPermissionRequest() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            permissions.all { activity.shouldShowRequestPermissionRationale(it) }.apply {
+                if (this) permissionRequestLauncher.launch(permissions)
+            }
         }
     }
 
