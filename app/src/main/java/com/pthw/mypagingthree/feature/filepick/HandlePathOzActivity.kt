@@ -32,7 +32,6 @@ class HandlePathOzActivity : BaseActivity<ActivityHandlePathOzBinding>() {
 
     // ResultHelper
     private val activityResultHelper = ActivityIntentResultHelper(this)
-
     // Permission Helper
     private val permissionHelper = PermissionRequestHelper(this)
 

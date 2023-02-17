@@ -48,7 +48,10 @@ android {
             isDebuggable = ReleaseBuild.isDebuggable
 
             resValue("string", "app_name", "MyPagingThree App")
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
         debug {
             signingConfig = signingConfigs.getByName("debug")
@@ -129,10 +132,15 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
-
-    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
+    implementation("com.google.firebase:firebase-auth-ktx")
 
     implementation("org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0")
+
+    //--photoview
+    implementation("com.github.chrisbanes:PhotoView:2.3.0")
+    //--recycler layout style chip chap
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
+
 }
 
 ktlint {

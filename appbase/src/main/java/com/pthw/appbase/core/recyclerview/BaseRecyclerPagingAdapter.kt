@@ -6,7 +6,7 @@ import timber.log.Timber
 abstract class BaseRecyclerPagingAdapter<itemType, VH : BaseViewHolder<itemType>>() :
     RecyclerView.Adapter<VH>() {
 
-    private var isLastReached = false
+    var isLastReached = false
     val footerLoadingAdapter: FooterLoadingAdapter by lazy {
         FooterLoadingAdapter()
     }
@@ -24,9 +24,16 @@ abstract class BaseRecyclerPagingAdapter<itemType, VH : BaseViewHolder<itemType>
         return mData?.size ?: 0
     }
 
+    override fun onBindViewHolder(holder: VH, position: Int) {
+        mData?.let {
+            holder.bind(it[position])
+        }
+    }
+
     fun setNewData(newData: MutableList<itemType>) {
         mData = newData
         notifyDataSetChanged()
+        hideFooterLoading()
     }
 
     fun appendNewData(newData: List<itemType>) {
@@ -44,6 +51,12 @@ abstract class BaseRecyclerPagingAdapter<itemType, VH : BaseViewHolder<itemType>
         notifyDataSetChanged()
     }
 
+    fun removeDataAt(index: Int) {
+        if (index == -1) return
+        mData!!.removeAt(index)
+        notifyDataSetChanged()
+    }
+
     fun addNewData(data: itemType) {
         mData!!.add(data)
         notifyDataSetChanged()
@@ -55,13 +68,19 @@ abstract class BaseRecyclerPagingAdapter<itemType, VH : BaseViewHolder<itemType>
         notifyDataSetChanged()
     }
 
+    fun addDataAt(index: Int, data: itemType) {
+        if (index == -1) return
+        mData!!.add(index, data)
+        notifyDataSetChanged()
+    }
+
     fun clearData() {
         mData = ArrayList()
         notifyDataSetChanged()
     }
 
     fun showFooterLoading() {
-        if (!isLastReached) {
+        if (!isLastReached && itemCount > 0) {
             footerLoadingAdapter.setNewData(mutableListOf(1))
             Timber.d("Show footer loading!")
         }
@@ -76,6 +95,11 @@ abstract class BaseRecyclerPagingAdapter<itemType, VH : BaseViewHolder<itemType>
 
     fun lastItemReached() {
         isLastReached = true
+        hideFooterLoading()
+    }
+
+    fun getLastVisibleItem(): itemType? {
+        return mData?.last()
     }
 
 }

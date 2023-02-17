@@ -31,17 +31,11 @@
             android:name=".feature.filepick.HandlePathOzActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.firestore_chat.ChattingActivity"
-            android:exported="true">
+            android:name=".feature.firestorechat.activity.ChattingActivity"
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".feature.modern_storage.ModernStorageActivity"
