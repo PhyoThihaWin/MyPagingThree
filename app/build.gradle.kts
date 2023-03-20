@@ -141,6 +141,8 @@ dependencies {
     //--recycler layout style chip chap
     implementation("com.google.android.flexbox:flexbox:3.0.0")
 
+    // qr
+    implementation ("com.github.yuriy-budiyev:code-scanner:2.3.2")
 }
 
 ktlint {

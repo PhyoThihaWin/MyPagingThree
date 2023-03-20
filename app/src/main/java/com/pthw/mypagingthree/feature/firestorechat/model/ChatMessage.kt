@@ -3,8 +3,8 @@ package com.pthw.mypagingthree.feature.firestorechat.model
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.ServerTimestamp
-import com.pthw.domain.AppConstants.LOCAL_PHARMACY_DATE_FORMAT
-import com.pthw.domain.AppConstants.LOCAL_TIME_FORMAT
+import com.pthw.domain.utils.AppConstants.LOCAL_PHARMACY_DATE_FORMAT
+import com.pthw.domain.utils.AppConstants.LOCAL_TIME_FORMAT
 import com.pthw.mypagingthree.feature.firestorechat.epochChatFormatter
 import com.pthw.mypagingthree.feature.firestorechat.epochFormatter
 

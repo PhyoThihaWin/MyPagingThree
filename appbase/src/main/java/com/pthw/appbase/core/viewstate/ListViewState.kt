@@ -12,25 +12,25 @@ sealed class ListViewState<out T> {
 
 
 fun <T> ListViewState<T>.renderState(
-    idle: (() -> Unit)? = null,
-    loading: (() -> Unit)? = null,
-    success: ((T) -> Unit)? = null,
-    error: ((String) -> Unit)? = null,
-    noMore: (() -> Unit)? = null
+    idle: () -> Unit = {},
+    loading: () -> Unit = {},
+    success: (T) -> Unit,
+    error: (String) -> Unit = {},
+    noMore: () -> Unit = {}
 ) {
     when (this) {
         is ListViewState.Loading -> {
-            loading?.invoke()
+            loading.invoke()
         }
         is ListViewState.Success -> {
-            success?.invoke(this.value)
+            success.invoke(this.value)
         }
         is ListViewState.Error -> {
-            error?.invoke(this.errorMessage)
+            error.invoke(this.errorMessage)
         }
         is ListViewState.NoMoreContent -> {
-            noMore?.invoke()
+            noMore.invoke()
         }
-        else -> idle?.invoke()
+        else -> idle.invoke()
     }
 }

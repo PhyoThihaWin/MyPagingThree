@@ -1,15 +1,16 @@
-package dev.onenex.heal.domain.extension
+package com.pthw.domain.extension
 
-import dev.onenex.heal.domain.AppConstants
-import dev.onenex.heal.domain.AppConstants.INVESTIGATION_DATE_FORMAT
-import dev.onenex.heal.domain.AppConstants.LOCAL_DATE_FORMAT
-import dev.onenex.heal.domain.AppConstants.LOCAL_INVESTIGATION_DATE_FORMAT
-import dev.onenex.heal.domain.AppConstants.LOCAL_PHARMACY_DATE_FORMAT
-import dev.onenex.heal.domain.AppConstants.LOCAL_TIME_FORMAT
-import dev.onenex.heal.domain.AppConstants.MEDICAL_RECORD_DATE_FORMAT
-import dev.onenex.heal.domain.AppConstants.ORDER_DATE_FORMAT
-import dev.onenex.heal.domain.AppConstants.SERVER_DATE_FORMAT
-import dev.onenex.heal.domain.AppConstants.SERVER_TIME_FORMAT
+
+import com.pthw.domain.utils.AppConstants
+import com.pthw.domain.utils.AppConstants.INVESTIGATION_DATE_FORMAT
+import com.pthw.domain.utils.AppConstants.LOCAL_DATE_FORMAT
+import com.pthw.domain.utils.AppConstants.LOCAL_INVESTIGATION_DATE_FORMAT
+import com.pthw.domain.utils.AppConstants.LOCAL_PHARMACY_DATE_FORMAT
+import com.pthw.domain.utils.AppConstants.LOCAL_TIME_FORMAT
+import com.pthw.domain.utils.AppConstants.MEDICAL_RECORD_DATE_FORMAT
+import com.pthw.domain.utils.AppConstants.ORDER_DATE_FORMAT
+import com.pthw.domain.utils.AppConstants.SERVER_DATE_FORMAT
+import com.pthw.domain.utils.AppConstants.SERVER_TIME_FORMAT
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
@@ -172,5 +173,5 @@ fun String.calculateAge(): String? {
 fun String.toLocalPharmacyDate(): String {
     val formatter = DateTimeFormatter.ofPattern(LOCAL_PHARMACY_DATE_FORMAT, Locale.ENGLISH)
     val parser = DateTimeFormatter.ofPattern(SERVER_DATE_FORMAT, Locale.ENGLISH)
-    return formatDate(formatter,parser,this.trim())
+    return formatDate(formatter, parser, this.trim())
 }
