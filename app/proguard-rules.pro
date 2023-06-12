@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+# the developer can specify keywords for the obfuscation (I myself use fruits for obfuscation names once in a while :-) )
+-obfuscationdictionary obfuscation/keywords.txt
+-classobfuscationdictionary obfuscation/keywords.txt
+-packageobfuscationdictionary obfuscation/keywords.txt

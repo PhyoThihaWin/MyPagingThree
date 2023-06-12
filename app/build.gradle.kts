@@ -48,10 +48,7 @@ android {
             isDebuggable = ReleaseBuild.isDebuggable
 
             resValue("string", "app_name", "MyPagingThree App")
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         debug {
             signingConfig = signingConfigs.getByName("debug")
@@ -62,6 +59,7 @@ android {
 //            applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
             resValue("string", "app_name", "MyPagingThree Debug")
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         register("qa") {
             signingConfig = signingConfigs.getByName("debug")
