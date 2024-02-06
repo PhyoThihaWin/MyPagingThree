@@ -141,6 +141,10 @@ dependencies {
 
     // qr
     implementation ("com.github.yuriy-budiyev:code-scanner:2.3.2")
+
+    // one-tap-sms-verification (auto fill with user-action)
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.android.gms:play-services-auth-api-phone:18.0.2")
 }
 
 ktlint {

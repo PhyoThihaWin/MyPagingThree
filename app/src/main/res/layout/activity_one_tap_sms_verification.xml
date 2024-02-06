@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".feature.onetapsms.OneTapSmsVerificationActivity">
+
+
+    <EditText
+        android:id="@+id/tv_otp_input_field"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="@dimen/margin_medium_3"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:autofillHints="smsOTPCode"
+        android:background="@drawable/bg_round_stroke_large"
+        android:baselineAligned="false"
+        android:cursorVisible="false"
+        android:gravity="center"
+        android:hint=". . . . . ."
+        android:importantForAutofill="yes"
+        android:inputType="number"
+        android:letterSpacing=".5"
+        android:maxLength="6"
+        android:textSize="@dimen/text_xlarge" />
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:text="Next" />
+
+</LinearLayout>

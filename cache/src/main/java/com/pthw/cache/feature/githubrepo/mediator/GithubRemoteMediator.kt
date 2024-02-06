@@ -11,7 +11,7 @@ import com.pthw.network.feature.githubrepo.service.GithubService
 import timber.log.Timber
 
 private const val GITHUB_STARTING_PAGE_INDEX = 1
-const val IN_QUALIFIER = "in:name,description"
+const val IN_QUALIFIER = " in:name,description"
 
 
 @OptIn(ExperimentalPagingApi::class)

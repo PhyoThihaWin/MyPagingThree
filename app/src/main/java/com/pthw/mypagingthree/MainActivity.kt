@@ -2,6 +2,7 @@ package com.pthw.mypagingthree
 
 import android.os.Bundle
 import com.pthw.appbase.core.BaseActivity
+import com.pthw.appbase.extension.loadFromUrl
 import com.pthw.appbase.extension.openActivity
 import com.pthw.listdialog.ui.DialogConfigs
 import com.pthw.listdialog.ui.showSearchListDialog
@@ -15,6 +16,8 @@ import com.pthw.mypagingthree.feature.modern_storage.ModernStorageActivity
 import com.pthw.mypagingthree.feature.qrscanner.QRScannerActivity
 import com.pthw.mypagingthree.feature.samplepost.ui.SamplePostActivity
 import com.pthw.mypagingthree.feature.splashimage.ui.SplashPhotoActivity
+import com.pthw.mypagingthree.helper.GpsTracker
+import timber.log.Timber
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override val binding: ActivityMainBinding by lazy {
@@ -80,5 +83,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.btnQrScanner.setOnClickListener {
             openActivity(QRScannerActivity::class.java)
         }
+
+
+        Timber.i("Location permission ==> Lat %s, Long %s", GpsTracker(this).latitude, GpsTracker(this).longitude)
+
     }
 }
