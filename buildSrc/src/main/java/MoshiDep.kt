@@ -9,7 +9,7 @@ fun DependencyHandler.moshi() {
 }
 
 object Moshi {
-    private const val version = "1.13.0"
+    private const val version = "1.15.0"
     const val core = "com.squareup.moshi:moshi:$version"
     const val adapters = "com.squareup.moshi:moshi-adapters:$version"
     const val kotlin = "com.squareup.moshi:moshi-kotlin:$version"

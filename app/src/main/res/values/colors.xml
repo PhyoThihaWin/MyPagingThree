@@ -8,7 +8,17 @@
     <color name="titleColor">#1F75FE</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#FF6200EE</color>
     <color name="separatorBackground">#AAAAAA</color>
     <color name="separatorText">#FFFFFF</color>
     <color name="colorBackground">#f2f2f2</color>
+    <color name="backgroundColor">#F2F2F2</color>
+    <color name="colorBlack">#FF000000</color>
+    <color name="colorSecondaryAlphaNoTrans">#FFE9D2</color>
+    <color name="colorSecondary">#FF8300</color>
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="standard_text_color">#444444</color>
+    <color name="colorJoinBtn">#263A8B</color>
+
 </resources>

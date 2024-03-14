@@ -1,30 +1,30 @@
 package com.pthw.appbase.core.viewstate
 
-sealed class ViewState<out T> {
+sealed class MyViewState<out T> {
     open operator fun invoke(): T? = null
 
-    class Idle<out T> : ViewState<T>()
-    data class Loading<out T>(val value: T) : ViewState<T>()
-    data class Success<out T>(val value: T) : ViewState<T>()
-    data class Error<out T>(val errorMessage: String) : ViewState<T>()
+    class Idle<out T> : MyViewState<T>()
+    data class Loading<out T>(val value: T) : MyViewState<T>()
+    data class Success<out T>(val value: T) : MyViewState<T>()
+    data class Error<out T>(val errorMessage: String) : MyViewState<T>()
 }
 
-fun <T> ViewState<T>.renderState(
-    idle: (() -> Unit)? = null,
-    loading: (() -> Unit)? = null,
-    success: ((T) -> Unit)? = null,
-    error: ((String) -> Unit)? = null,
+fun <T> MyViewState<T>.renderState(
+    idle: () -> Unit = {},
+    loading: () -> Unit = {},
+    success: (T) -> Unit,
+    error: (String) -> Unit = {},
 ) {
     when (this) {
-        is ViewState.Loading -> {
-            loading?.invoke()
+        is MyViewState.Loading -> {
+            loading.invoke()
         }
-        is ViewState.Success -> {
-            success?.invoke(this.value)
+        is MyViewState.Success -> {
+            success.invoke(this.value)
         }
-        is ViewState.Error -> {
-            error?.invoke(this.errorMessage)
+        is MyViewState.Error -> {
+            error.invoke(this.errorMessage)
         }
-        else -> idle?.invoke()
+        else -> idle.invoke()
     }
 }

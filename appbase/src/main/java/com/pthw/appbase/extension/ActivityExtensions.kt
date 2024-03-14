@@ -3,6 +3,7 @@ package com.pthw.appbase.extension
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -43,3 +44,6 @@ fun <T> Context.openActivity(it: Class<T>, extras: Bundle.() -> Unit = {}) {
   intent.putExtras(Bundle().apply(extras))
   startActivity(intent)
 }
+
+
+fun isSdkBelowVersion(checkCode: Int) = Build.VERSION.SDK_INT <= checkCode

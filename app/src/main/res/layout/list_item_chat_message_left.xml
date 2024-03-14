@@ -9,8 +9,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_profile"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="@dimen/margin_20dp"
         android:contentDescription="Image of doctor"
         android:scaleType="centerCrop"
@@ -35,13 +35,26 @@
             android:padding="@dimen/margin_medium_2"
             tools:text="How about you like us to advise about your health?" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_chat_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_20dp"
+            android:layoutDirection="ltr"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="3"
+            tools:listitem="@layout/list_item_chat_message_image" />
+
         <TextView
             android:id="@+id/tv_date_time"
             style="@style/TextViewFontBase"
             android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
             android:textColor="@color/colorGrey"
             tools:text="09:59 AM" />
 

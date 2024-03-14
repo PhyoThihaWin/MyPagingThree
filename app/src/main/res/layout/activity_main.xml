@@ -105,6 +105,34 @@
             android:layout_marginEnd="24dp"
             android:text="FireStore Chat"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_file_pick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="File Pick Test"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_biometric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="Biometric Test"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_qr_scanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="QR Scanner Test"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

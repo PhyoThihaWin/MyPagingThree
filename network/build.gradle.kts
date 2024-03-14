@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace = "com.pthw.network"
-    compileSdk = 32
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -46,12 +46,17 @@ android {
             buildConfigField ("String", "CLIENT_ID", "\"${rootProject.ext["credentialClientId"]}\"")
         }
     }
-    java {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
@@ -75,9 +80,9 @@ dependencies {
     testImplementation(OkHttp.mock_web_server)
 
     implementation(CommonDep.timber)
-    debugImplementation("com.github.chuckerteam.chucker:library:3.5.2")
-    uatImplementation("com.github.chuckerteam.chucker:library:3.5.2")
-    qaImplementation("com.github.chuckerteam.chucker:library:3.5.2")
+    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
+    uatImplementation("com.github.chuckerteam.chucker:library:4.0.0")
+    qaImplementation("com.github.chuckerteam.chucker:library:4.0.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:3.5.2")
 
     kaptTest(Moshi.code_gen)

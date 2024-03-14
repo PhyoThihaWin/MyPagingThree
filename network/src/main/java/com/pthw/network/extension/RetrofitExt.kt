@@ -7,7 +7,6 @@ import retrofit2.Response
 
 /**
  * Created by Vincent on 2019-10-21
- *
  * Modified by PTH
  */
 private const val KEY_CONTENT = 204

@@ -1,0 +1,49 @@
+#
+# This obfuscation dictionary contains reserved Java keywords. They can't
+# be used in Java source files, but they can be used in compiled class files.
+# Note that this hardly improves the obfuscation. Decent decompilers can
+# automatically replace reserved keywords, and the effect can fairly simply be
+# undone by obfuscating again with simpler names.
+# Usage:
+#     java -jar proguard.jar ..... -obfuscationdictionary keywords.txt
+#
+
+Apple
+Apricot
+Avocado
+Banana
+Blackberry
+Blueberry
+Cherry
+Coconut
+Cucumber
+Durian
+Dragonfruit
+Fig
+Gooseberry
+Grape
+Guava
+Jackfruit
+Plum
+Kiwifruit
+Kumquat
+Lemon
+Lime
+Mango
+Watermelon
+Mulberry
+Orange
+Papaya
+Passionfruit
+Peach
+Pear
+Persimmon
+Pineapple
+Pineberry
+Quince
+Raspberry
+Soursop
+Star fruit
+Strawberry
+Tamarind
+Yuzu
