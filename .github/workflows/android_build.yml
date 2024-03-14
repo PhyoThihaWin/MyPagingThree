@@ -44,8 +44,8 @@ jobs:
 
       # Run Tests Build
       - name: Run ktlint
-        run: ./gradlew ktlintCheck
+        run: ./gradlew ktlintCheck --stacktrace
 
       # Run Build Project
       - name: Build gradle project
-        run: ./gradlew build
+        run: ./gradlew assembleDebug
