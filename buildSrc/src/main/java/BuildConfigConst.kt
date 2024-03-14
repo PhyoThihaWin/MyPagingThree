@@ -1,8 +1,7 @@
 object BuildConfigConst {
-    const val compileSdk = 33
+    const val compileSdk = 34
     const val minSdk = 21
-    const val targetSdk = 33
-    const val buildToolVersion = "33.0.0"
+    const val targetSdk = 34
 
     private const val versionMajor = 1
     private const val versionMinor = 0
